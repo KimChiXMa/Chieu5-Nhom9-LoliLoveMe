@@ -14,10 +14,10 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="./index.php">Homepage</a></li>
-                            <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
+                            <li><a href="./categories.php">Categories <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
-                                    <li><a href="./categories.html">romance</a></li>
-                                    <li><a href="./categories.html">sci-fi</a></li>
+                                    <li><a href="./categories.php">romance</a></li>
+                                    <li><a href="./categories.php">sci-fi</a></li>
                                 </ul>
                             </li>
 
@@ -29,7 +29,7 @@
             <div class="col-lg-2">
                 <div class="header__right">
                     <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="./login.html"><span class="icon_profile"></span></a>
+                    <a href="./login.php"><span class="icon_profile"></span></a>
                 </div>
             </div>
         </div>
