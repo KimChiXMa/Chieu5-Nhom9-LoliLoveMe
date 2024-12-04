@@ -1,4 +1,11 @@
 <!-- Header Section Begin -->
+ <?php
+require "config.php";
+require "models/db.php";
+require "models/anime.php";
+require "models/item.php";
+
+$anime = new Anime;?>
 <header class="header">
     <div class="container">
         <div class="row">
