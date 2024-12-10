@@ -56,8 +56,7 @@
                 <div class="col-lg-12">
                     <div class="anime__video__player">
                         <video id="player" playsinline controls data-poster="./videos/anime-watch.jpg">
-                            <source src="videos/Fatestay night Unlimited Blade Works English Dub Trailer_v720P.mp4"
-                                type="video/mp4" />
+                        
                             <!-- Captions are optional -->
                             <track kind="captions" label="English captions" src="#" srclang="en" default />
                         </video>
