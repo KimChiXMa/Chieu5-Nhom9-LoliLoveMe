@@ -32,12 +32,19 @@
     </div>
 
     <?php include 'header.php';
-
-    $idAnime = $_GET['id'];
-    $episode = $_GET['episode'];
+    $idAnime = 1;
+    $episode = 1;
+    if(isset($_GET['id'])){
+        $idAnime = $_GET['id'];
+    }
+    if(isset($_GET['episode'])){
+        $episode = $_GET['episode'];
+    }
+    
     foreach ($epi->getUrl($idAnime, $episode) as $key => $value) {
         $urlVideo = $value['id'];
     }
+    
     var_dump($urlVideo);
     $getListEpisode = $epi->getEpisode($idAnime);
     //var_dump($idAnime);
@@ -45,7 +52,7 @@
     // var_dump($getListEpisode);
 
     foreach ($getAllAnime as $key => $value):
-        //if ($idAnime == $value['id']):
+        if ($idAnime == $value['id']):
     ?>
 
         <!-- Breadcrumb Begin -->
@@ -57,7 +64,7 @@
                             <a href="./index.php"><i class="fa fa-home"></i> Home</a>
                             <a href="./categories.php">Categories</a>
                             <a href="#">Romance</a>
-                            <span>Fate Stay Night: Unlimited Blade</span>
+                            <span><?php echo $value['name']; ?></span>
                         </div>
                     </div>
                 </div>
@@ -97,7 +104,7 @@
                             ?>
                         </div>
                     <?php
-                //endif;
+                endif;
                 endforeach;
                     ?>
                     </div>
