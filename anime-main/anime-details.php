@@ -33,7 +33,7 @@
 
     <?php
     include 'header.php'
-        ?>
+    ?>
 
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
@@ -56,42 +56,49 @@
         <div class="container">
             <div class="anime__details__content">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" data-setbg="img/hero/hero-1.jpg">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="anime__details__text">
-                            <div class="anime__details__title">
-                                <h3>Fate Stay Night: Unlimited Blade</h3>
-                                <span>フェイト／ステイナイト, Feito／sutei naito</span>
-                            </div>
 
-                            <p>Every human inhabiting the world of Alcia is branded by a “Count” or a number written on
-                                their body. For Hina’s mother, her total drops to 0 and she’s pulled into the Abyss,
-                                never to be seen again. But her mother’s last words send Hina on a quest to find a
-                                legendary hero from the Waste War - the fabled Ace!</p>
-                            <div class="anime__details__widget">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <ul>
-
-                                            <li><span>Studios:</span> Lerche</li>
-                                            <li><span>Tác giả :</span> Kinoko Nasu and Takuya Satō</li>
-                                            <li><span>Thể loại:</span> Action, Adventure, Fantasy, Magic</li>
-                                            <li><span>Số tập:</span> 12</li>
-                                        </ul>
-                                    </div>
-
+                    <?php
+                    $getAllAnime = $anime->getAllAnimes();
+                    foreach ($getAllAnime as $key => $value):
+                        if ($_GET['id'] == $value['id']):
+                    ?>
+                            <div class="col-lg-3">
+                                <div class="anime__details__pic set-bg" data-setbg="https://drive.google.com/thumbnail?id=1IN0RBy-4n-BSSpYBp1JAt7na8j12plXJ&sz=w10000">
                                 </div>
                             </div>
-                            <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                <a href="anime-watching.php" class="watch-btn"><span>Watch Now</span> <i
-                                        class="fa fa-angle-right"></i></a>
+                            <div class="col-lg-6">
+                                <div class="anime__details__text">
+                                    <div class="anime__details__title">
+                                        <h3><?php echo $value['name']; ?></h3>
+                                        <span>フェイト／ステイナイト, Feito／sutei naito</span>
+                                    </div>
+
+                                    <p><?php echo $value['descrip']; ?></p>
+                                    <div class="anime__details__widget">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <ul>
+
+                                                    <li><span>Studios:</span> <?php echo $value['name']; ?></li>
+                                                    <li><span>Tác giả :</span> <?php echo $value['name']; ?></li>
+                                                    <li><span>Thể loại:</span> <?php echo $value['name']; ?></li>
+                                                    <li><span>Số tập:</span> <?php echo $value['name']; ?></li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="anime__details__btn">
+                                        <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
+                                        <a href="anime-watching.php" class="watch-btn"><span>Watch Now</span> <i
+                                                class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+
+                    <?php endif;
+                    endforeach; ?>
+
                     <div class="col-lg-3 col-md-4">
                         <div class="anime__details__sidebar">
                             <div class="section-title">
@@ -151,7 +158,9 @@
                 <div class="col-lg-3">
                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | This template
                         is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
                             target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -163,7 +172,7 @@
     </footer>
     <!-- Footer Section End -->
 
-<!-- Search model Begin -->
+    <!-- Search model Begin -->
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch"><i class="icon_close"></i></div>

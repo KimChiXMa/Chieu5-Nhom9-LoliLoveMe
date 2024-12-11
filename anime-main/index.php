@@ -227,7 +227,7 @@
                                             <li>Active</li>
                                             <li>Movie</li>
                                         </ul>
-                                        <h5><a href="#"><?php echo $value['name']; ?></a></h5>
+                                        <h5><a href="anime-details.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></h5>
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +348,7 @@
     <script>
         function goToAnimeDetail(animeSlug) {
                 // Sử dụng tham số truyền vào
-                window.location.href = 'anime-detail.php?anime=' + animeSlug;
+                window.location.href = 'anime-details.php?anime=' + animeSlug;
                 //window.location.href = 'anime-details.php'
             }
         /*document.getElementById('move_detail').addEventListener('click', function () {
