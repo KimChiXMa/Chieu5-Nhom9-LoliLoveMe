@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2024 at 08:24 AM
+-- Generation Time: Dec 11, 2024 at 10:15 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `handtayweb`
+-- Database: `project`
 --
-CREATE DATABASE IF NOT EXISTS `handtayweb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `handtayweb`;
+CREATE DATABASE IF NOT EXISTS `project` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `project`;
 
 -- --------------------------------------------------------
 
@@ -44,7 +44,7 @@ CREATE TABLE `anime` (
 --
 
 INSERT INTO `anime` (`id`, `name`, `author`, `studio`, `descrip`, `thumbnail`, `so_tap`) VALUES
-(1, 'Akame ga Kill!\r\n', 'Takahiro', 'White Fox', 'Tatsumi là một chiến binh nhỏ tuổi (chắc thế), vì muốn cứu ngôi làng của mình mà cậu cùng 2 người bạn đã dứt áo ra đi lên thủ đô, một nơi vốn đã tha hóa và trở thành địa ngục trần gian. \r\n\r\nVà xui xẻo thay, cậu vừa đến được thủ đô thì bị lừa mất sạch tiền bạc bởi một cô gái, thế nhưng cậu lại được một cô gái xinh đẹp khác giúp đỡ trong lúc gặp khó khăn. \r\n\r\nVậy chuyện gì mà Tatsumi chưa biết về gia đình của cô gái xinh đẹp đã giúp đỡ cậu, khi mà gia đình của cô ấy bị một nhóm sát thủ viếng thăm (có bao gồm cả cô gái đã lừa tình tiền của cậu trước đó), và chuyện gì sẽ xảy ra nếu nhóm sát thủ này là người tốt, và đang cần thêm nhân lực đây...?', 'https://static.wikia.nocookie.net/dubbing9585/images/c/cd/AkamegaKill.jpg', '24'),
+(1, 'Akame ga Kill!\r\n', 'Takahiro', 'White Fox', 'Tatsumi là một chiến binh nhỏ tuổi (chắc thế), vì muốn cứu ngôi làng của mình mà cậu cùng 2 người bạn đã dứt áo ra đi lên thủ đô, một nơi vốn đã tha hóa và trở thành địa ngục trần gian. \n\nVà xui xẻo thay, cậu vừa đến được thủ đô thì bị lừa mất sạch tiền bạc bởi một cô gái, thế nhưng cậu lại được một cô gái xinh đẹp khác giúp đỡ trong lúc gặp khó khăn. \n\nVậy chuyện gì mà Tatsumi chưa biết về gia đình của cô gái xinh đẹp đã giúp đỡ cậu, khi mà gia đình của cô ấy bị một nhóm sát thủ viếng thăm (có bao gồm cả cô gái đã lừa tình tiền của cậu trước đó), và chuyện gì sẽ xảy ra nếu nhóm sát thủ này là người tốt, và đang cần thêm nhân lực đây...?', 'https://static.wikia.nocookie.net/dubbing9585/images/c/cd/AkamegaKill.jpg', '24'),
 (2, 'Charlotte', 'Maeda Jun', 'P.A.Works', 'Nội dung phim là câu chuyện xoay quanh những khả năng đặc biệt xảy ra trong một tỷ lệ phần trăm nhỏ của chàng trai và cô gái ở tuổi dậy thì. Yū Otosaka sử dụng quyền lực của mình mà không có người khác biết, và sống một cuộc sống trường trung bình khá bình thường. Trước khi anh đột nhiên xuất hiện một cô gái, Nao Tomori. Do cuộc họp của ông với cô ấy, số phận của đặc quyền người dùng sẽ được tiếp xúc. Đây là câu chuyện của những người có quyền hạn đặc biệt của những người kinh nghiệm thanh niên, được viết bởi Maeda Jun', 'https://upload.wikimedia.org/wikipedia/vi/3/32/Charlotte_key.jpg', '15'),
 (3, 'Kobayashi-san Chi no Maid Dragon', 'Coolkyousinnjya', 'Kyoto Animation', 'Kobayashi - một nữ kĩ sư phần mềm chăm chỉ, độc thân, sống một mình ở một khu chung cư. Một lần, cô tình cờ cứu giúp một con rồng, loài vật huyền thoại có thể hủy diệt cả thế giới. Có nợ thì phải trả, dù đó có là loài người thấp kém, Tohru đã được dạy như thế. Cô tâm niệm sẽ giúp đỡ hết mình cho ân nhân trong vai trò maid - một hầu gái, dù đôi khi mọi thứ có vẻ không suôn sẻ lắm... Hãy cùng theo dõi hành trình trở thành Hầu Gái của Tohru và những tình huống dở khóc dở cười mà Kobayashi phải trải qua nào!', 'https://animehay.de/upload/poster/1853.jpg', '13'),
 (4, 'Shigatsu wa Kimi no Uso', 'Takao Yoshioka', 'A-1 Pictures', 'Câu chuyện kể về Arima Kousei, một thần đồng piano. Nhưng kể từ sau chấn động tâm lí do cái sự qua đời của mẹ cậu, Kosei đã không thể nghe thấy bất kì âm thanh nào. Cứ tưởng là cậu sẽ không bao giờ động vào những phím piano nữa nhưng đó là trước khi cậu đã gặp Miyazono Kaori...', 'https://animehay.de/upload/poster/75.jpg', '22'),
@@ -148,7 +148,7 @@ CREATE TABLE `user` (
   `username` text NOT NULL,
   `pass` text NOT NULL,
   `displayname` text DEFAULT NULL,
-  `email` text NOT NULL
+  `email` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
