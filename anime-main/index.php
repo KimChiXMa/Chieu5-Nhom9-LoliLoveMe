@@ -32,8 +32,6 @@
     </div>
 
     <?php include "header.php"; ?>
-    
-
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">

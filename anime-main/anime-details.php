@@ -62,7 +62,9 @@
                     $getTag = $animetag->getTag($_GET['id']);
                     $tag = "đang cập nhật";
                     $count = 0;
-
+                    // $image = 
+                    // https://drive.google.com/thumbnail?id=19JXU1eLGKERynI2ELAkGczxaA-NO83Kb&sz=w10000
+                    //;
                     //tạo chuỗi tag chứa các tag của anime
                     foreach ($getTag as $key => $value) {
                         if ($count == 0) {
@@ -72,13 +74,13 @@
                             $tag = $tag . " ,   " . $value['name_tag'];
                         }
                     }
-                    
+
                     //lặp để tìm ra anime từ id
                     foreach ($getAllAnime as $key => $value):
                         if ($_GET['id'] == $value['id']):
                     ?>
                             <div class="col-lg-4">
-                                <div class="anime__details__pic set-bg" data-setbg="https://drive.google.com/thumbnail?id=1IN0RBy-4n-BSSpYBp1JAt7na8j12plXJ&sz=w10000">
+                                <div class="anime__details__pic set-bg" data-setbg="<?php echo proceedUrl($value['thumbnail']); ?>">
                                 </div>
                             </div>
                             <div class="col-lg-8">
