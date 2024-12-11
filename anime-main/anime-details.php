@@ -59,30 +59,42 @@
 
                     <?php
                     $getAllAnime = $anime->getAllAnimes();
+                    $getTag = $animetag->getTag($_GET['id']);
+                    $tag = "đang cập nhật";
+                    $count = 0;
+
+                    //tạo chuỗi tag chứa các tag của anime
+                    foreach ($getTag as $key => $value) {
+                        if ($count == 0) {
+                            $tag = $value['name_tag'];
+                            $count = 1;
+                        } else {
+                            $tag = $tag . " ,   " . $value['name_tag'];
+                        }
+                    }
+                    
+                    //lặp để tìm ra anime từ id
                     foreach ($getAllAnime as $key => $value):
                         if ($_GET['id'] == $value['id']):
                     ?>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="anime__details__pic set-bg" data-setbg="https://drive.google.com/thumbnail?id=1IN0RBy-4n-BSSpYBp1JAt7na8j12plXJ&sz=w10000">
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-8">
                                 <div class="anime__details__text">
                                     <div class="anime__details__title">
                                         <h3><?php echo $value['name']; ?></h3>
-                                        <span>フェイト／ステイナイト, Feito／sutei naito</span>
                                     </div>
-
                                     <p><?php echo $value['descrip']; ?></p>
                                     <div class="anime__details__widget">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <ul>
-
-                                                    <li><span>Studios:</span> <?php echo $value['name']; ?></li>
-                                                    <li><span>Tác giả :</span> <?php echo $value['name']; ?></li>
-                                                    <li><span>Thể loại:</span> <?php echo $value['name']; ?></li>
-                                                    <li><span>Số tập:</span> <?php echo $value['name']; ?></li>
+                                                    <li><span>Studios:</span> <?php echo $value['studio']; ?></li>
+                                                    <li><span>Tác giả :</span> <?php echo $value['author']; ?></li>
+                                                    <li><span>Thể loại:</span><?php echo $tag; ?></li>
+                                                    <li><span>Số tập:</span> <?php echo $value['so_tap']; ?></li>
                                                 </ul>
                                             </div>
 
@@ -90,7 +102,7 @@
                                     </div>
                                     <div class="anime__details__btn">
                                         <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                        <a href="anime-watching.php" class="watch-btn"><span>Watch Now</span> <i
+                                        <a href="anime-watching.php?id=<?php echo $_GET['id'] . "&episode=1"; ?>" class="watch-btn"><span>Watch Now</span> <i
                                                 class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>
@@ -99,33 +111,7 @@
                     <?php endif;
                     endforeach; ?>
 
-                    <div class="col-lg-3 col-md-4">
-                        <div class="anime__details__sidebar">
-                            <div class="section-title">
-                                <h5>you might like...</h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-1.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Boruto: Naruto next generations</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-2.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-3.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-4.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 

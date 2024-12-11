@@ -5,8 +5,14 @@ require "models/db.php";
 require "models/anime.php";
 require "models/item.php";
 require "models/anime_tag.php";
+require "models/epi.php";
 
-$anime = new Anime;?>
+
+$anime = new Anime;
+$animetag = new AnimeTag;
+$epi = new Episode;
+?>
+
 <header class="header">
     <div class="container">
         <div class="row">

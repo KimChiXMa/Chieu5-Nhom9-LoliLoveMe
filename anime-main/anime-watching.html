@@ -195,7 +195,8 @@
         window.onload = function() {
             // Đợi trang web đã tải xong, sau đó gán src cho iframe
             var iframe = document.getElementById("ifrvideo");
-            iframe.src = "https://drive.google.com/file/d/12o07Y5DXRaqSi_clm9TNEJkxNDGegb73/preview";  // Thay đổi URL theo nhu cầu của bạn
+            iframe.src = "<?php echo addslashes($myString); ?>";
+            "https://drive.google.com/file/d/12o07Y5DXRaqSi_clm9TNEJkxNDGegb73/preview";  // Thay đổi URL theo nhu cầu của bạn
         }
     </script>
     
