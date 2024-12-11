@@ -99,7 +99,7 @@
                 <div class="col-lg-12">
                     <div class="anime__video__player">
                         <div class="iframe-container">
-                        <iframe src="https://drive.google.com/file/d/12o07Y5DXRaqSi_clm9TNEJkxNDGegb73/preview" width="640" height="360" allow="autoplay" allowfullscreen="true"></iframe>
+                        <iframe id="ifrvideo" width="640" height="360" allow="autoplay" allowfullscreen="true"></iframe>
                         </div>
                         <!-- <video id="player" playsinline controls data-poster="./videos/anime-watch.jpg">
                              Captions are optional
@@ -191,7 +191,14 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
+    <script>
+        window.onload = function() {
+            // Đợi trang web đã tải xong, sau đó gán src cho iframe
+            var iframe = document.getElementById("ifrvideo");
+            iframe.src = "https://drive.google.com/file/d/12o07Y5DXRaqSi_clm9TNEJkxNDGegb73/preview";  // Thay đổi URL theo nhu cầu của bạn
+        }
+    </script>
+    
 </body>
 
 </html>
