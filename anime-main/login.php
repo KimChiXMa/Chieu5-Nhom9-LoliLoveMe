@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -54,18 +57,19 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Login</h3>
-                        <form action="#">
+                        <form action="" method="post">
                             <div class="input__item">
-                                <input type="text" placeholder="Email address">
+                                <input name="user_name_email_login" type="text" placeholder="Username or Email">
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" placeholder="Password">
+                                <input name="user_password_login" type="text" placeholder="Password">
                                 <span class="icon_lock"></span>
                             </div>
                             <button type="submit" class="site-btn">Login Now</button>
                         </form>
-                        <a href="#" class="forget_pass">Forgot Your Password?</a>
+                        
+                        <a href="" class="forget_pass">Forgot Your Password?</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -119,10 +123,13 @@
                 </div>
                 <div class="col-lg-3">
                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>
+                        Copyright &copy;
+                        <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </script> All rights reserved | This template is made with <i class="fa fa-heart"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
 
                 </div>
             </div>
@@ -151,6 +158,15 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
+    <?php
+                        // $huhu = $user->getalluser();
+                        // $checklogin = ($user->UserLogin($_POST['user_name_email_login'],$_POST['user_password_login']));
+                        // $count = count($huhu);
+                            if (isset($_POST['user_name_email_login']) && $_POST["user_name_email_login"] == "huhu")
+                            {
+                                header('location:anime-watching.php');
+                            }
+                        ?>
 
 </body>
 

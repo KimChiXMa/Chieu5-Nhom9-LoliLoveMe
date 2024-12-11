@@ -6,11 +6,12 @@ require "models/anime.php";
 require "models/item.php";
 require "models/anime_tag.php";
 require "models/epi.php";
-
+require "models/user.php";
 
 $anime = new Anime;
 $animetag = new AnimeTag;
 $epi = new Episode;
+$user = new User;
 ?>
 
 <header class="header">
