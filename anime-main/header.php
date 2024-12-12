@@ -3,7 +3,7 @@
 require "config.php";
 require "models/db.php";
 require "models/anime.php";
-require "models/item.php";
+//require "models/item.php";
 require "models/anime_tag.php";
 require "models/epi.php";
 require "models/user.php";
@@ -11,9 +11,6 @@ require "models/user.php";
 $anime = new Anime;
 $animetag = new AnimeTag;
 $epi = new Episode;
-<<<<<<< HEAD
-$user = new User;
-=======
 
 //xử lý địa chỉ hình ảnh để nhúng vào web
     function proceedUrl($url)
@@ -24,7 +21,6 @@ $user = new User;
     }
 
 
->>>>>>> edfaa422aafe06019cbb55cd0d191f8fe32c9dd8
 ?>
 
 <header class="header">

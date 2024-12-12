@@ -75,5 +75,4 @@ class Item extends Db
         }
         return $link;
     }
-    function searchCount()
 }
