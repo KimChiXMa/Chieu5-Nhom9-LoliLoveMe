@@ -31,7 +31,23 @@
         <div class="loader"></div>
     </div>
 
-    <?php include "header.php"; ?>
+    <?php
+    include "header.php";
+    if ((isset($_POST['User_SU_Email']) || isset($_POST['User_SU_Username'])) && isset($_POST['User_SU_Password'])) {
+        $username = $_POST['User_SU_Username'];
+        $password = $_POST['User_SU_Password'];
+        $email = $_POST['User_SU_Email'];
+        $UserRegister = $user->UserRegiser($username,$password,$email);
+        //var_dump($_POST['user_password_login']);
+        //var_dump($UserRegister);
+        if ($UserRegister == true) {
+            header('location:login.php');
+        }
+        else
+        {
+        }
+    }
+    ?>
 
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
@@ -55,17 +71,17 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Sign Up</h3>
-                        <form action="#">
+                        <form action="" method="post">
                             <div class="input__item">
-                                <input type="text" placeholder="Email address">
+                                <input name="User_SU_Email" type="text" placeholder="Email">
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" placeholder="Your Name">
+                                <input name="User_SU_Username" type="text" placeholder="Username" required>
                                 <span class="icon_profile"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" placeholder="Password">
+                                <input name="User_SU_Password" type="text" placeholder="Password" required>
                                 <span class="icon_lock"></span>
                             </div>
                             <button type="submit" class="site-btn">Login Now</button>
