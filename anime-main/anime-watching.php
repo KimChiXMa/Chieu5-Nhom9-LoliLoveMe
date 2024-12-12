@@ -31,7 +31,8 @@
         <div class="loader"></div>
     </div>
 
-    <?php include 'header.php';
+    <?php
+     include 'header.php';
     $idAnime = 1;
     $episode = 1;
     if(isset($_GET['id'])){
@@ -45,11 +46,10 @@
         $urlVideo = $value['id'];
     }
     
-    var_dump($urlVideo);
     $getListEpisode = $epi->getEpisode($idAnime);
     //var_dump($idAnime);
     $getAllAnime = $anime->getAllAnimes();
-    // var_dump($getListEpisode);
+    var_dump($getListEpisode);
 
     foreach ($getAllAnime as $key => $value):
         if ($idAnime == $value['id']):
@@ -93,11 +93,11 @@
                             </div>
 
                             <?php
-                            //if ($idAnime == $value['id']):
-                            foreach ($getListEpisode as $key => $value):
+                            
+                            foreach ($getListEpisode as $episo => $valueEpi):
                             ?>
 
-                                <a href="anime-watching.php?id=<?php echo $_GET['id'];?>&episode=<?php echo $value['tentap'];?>">Ep <?php echo $value['tentap']; ?></a>
+                                <a href="anime-watching.php?id=<?php echo $idAnime;?>&episode=<?php echo $valueEpi['tentap'];?>">Ep <?php echo $valueEpi['tentap']; ?></a>
 
                             <?php
                             endforeach;
@@ -106,7 +106,7 @@
                     <?php
                 endif;
                 endforeach;
-                    ?>
+                   ?>
                     </div>
                 </div>
 
@@ -178,7 +178,6 @@
                 // Đợi trang web đã tải xong, sau đó gán src cho iframe
                 var iframe = document.getElementById("ifrvideo");
                 iframe.src = "<?php echo addslashes($urlVideo); ?>"; // Thay đổi URL theo nhu cầu của bạn
-
             }
         </script>
 </body>

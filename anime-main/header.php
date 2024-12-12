@@ -1,28 +1,26 @@
-<!-- Header Section Begin -->
- <?php
+<?php
 require "config.php";
 require "models/db.php";
 require "models/anime.php";
-//require "models/item.php";
+require "models/item.php";
 require "models/anime_tag.php";
 require "models/epi.php";
-require "models/user.php";
+require "models/users.php";
 
 $anime = new Anime;
 $animetag = new AnimeTag;
 $epi = new Episode;
+$user = new User;
 
 //xử lý địa chỉ hình ảnh để nhúng vào web
-    function proceedUrl($url)
-    {
-        $idImg = substr($url, 32, 33);
-        $newUrl = "https://drive.google.com/thumbnail?id=".$idImg."&sz=w10000";
-        return $newUrl;
-    }
-
-
+function proceedUrl($url)
+{
+    $idImg = substr($url, 32, 33);
+    $newUrl = "https://drive.google.com/thumbnail?id=" . $idImg . "&sz=w10000";
+    return $newUrl;
+}
 ?>
-
+<!-- Header Section Begin -->
 <header class="header">
     <div class="container">
         <div class="row">

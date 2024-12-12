@@ -11,9 +11,6 @@ class AnimeTag extends Db
         return $items;
     }
 
-    
-
-
 
 
 

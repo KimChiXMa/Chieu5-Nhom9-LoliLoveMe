@@ -1,5 +1,9 @@
 <?php
+//include "header.php";
 session_start();
+// $huhu = $user->getalluser();
+// $checklogin = ($user->UserLogin($_POST['user_name_email_login'],$_POST['user_password_login']));
+// $count = count($huhu);
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -10,7 +14,7 @@ session_start();
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
+    <title>Login</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -33,7 +37,28 @@ session_start();
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    <?php include "header.php"; ?>
+
+<?php include "header.php";
+$loginstat = "";
+if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'])) {
+    $username = $_POST['user_name_email_login'];
+    $password = $_POST['user_password_login'];
+    //var_dump($_POST['user_password_login']);
+    if (count($user->UserLogin($_POST['user_name_email_login'],$_POST['user_password_login']))>0) {
+        $_SESSION["username"] = $username;
+        $_SESSION["password"] = $password;
+        $loginstat = "Successfully";
+        header('location:anime-watching.php');
+    }
+    else
+    {
+        // header('location:login.php');
+        unset($_SESSION['username']);
+        unset($_SESSION['password']);
+        $loginstat = "Failed";
+    }
+}
+?>
 
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
@@ -66,6 +91,11 @@ session_start();
                                 <input name="user_password_login" type="text" placeholder="Password">
                                 <span class="icon_lock"></span>
                             </div>
+                            <div></div>
+                            <?php
+                            if($loginstat == "Failed"){
+                                echo "<div style='color:Tomato;'>"."Username or password incorrect"."</div>";}
+                            ?>
                             <button type="submit" class="site-btn">Login Now</button>
                         </form>
                         
@@ -157,17 +187,6 @@ session_start();
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
-    <?php
-                        // $huhu = $user->getalluser();
-                        // $checklogin = ($user->UserLogin($_POST['user_name_email_login'],$_POST['user_password_login']));
-                        // $count = count($huhu);
-                            if (isset($_POST['user_name_email_login']) && $_POST["user_name_email_login"] == "huhu")
-                            {
-                                header('location:anime-watching.php');
-                            }
-                        ?>
-
 </body>
 
 </html>
