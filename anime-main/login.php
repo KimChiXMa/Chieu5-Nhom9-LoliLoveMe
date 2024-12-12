@@ -39,6 +39,7 @@ session_start();
     </div>
 
 <?php include "header.php";
+$loginstat = "";
 if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'])) {
     $username = $_POST['user_name_email_login'];
     $password = $_POST['user_password_login'];
@@ -46,12 +47,13 @@ if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'
     if (count($user->UserLogin($_POST['user_name_email_login'],$_POST['user_password_login']))>0) {
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
-
+        $loginstat = "Successfully";
         header('location:anime-watching.php');
     }
     else
     {
-        header('location:login.php');
+        // header('location:login.php');
+        $loginstat = "Failed";
     }
 }
 ?>
@@ -87,6 +89,11 @@ if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'
                                 <input name="user_password_login" type="text" placeholder="Password">
                                 <span class="icon_lock"></span>
                             </div>
+                            <div></div>
+                            <?php
+                            if($loginstat == "Failed"){
+                                echo "<div style='color:Tomato;'>"."Username or password incorrect"."</div>";}
+                            ?>
                             <button type="submit" class="site-btn">Login Now</button>
                         </form>
                         
