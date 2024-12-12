@@ -1,5 +1,4 @@
-<!-- Header Section Begin -->
- <?php
+<?php
 require "config.php";
 require "models/db.php";
 require "models/anime.php";
@@ -11,7 +10,7 @@ require "models/user.php";
 $anime = new Anime;
 $animetag = new AnimeTag;
 $epi = new Episode;
-
+$user = new User;
 //xử lý địa chỉ hình ảnh để nhúng vào web
     function proceedUrl($url)
     {
@@ -19,10 +18,8 @@ $epi = new Episode;
         $newUrl = "https://drive.google.com/thumbnail?id=".$idImg."&sz=w10000";
         return $newUrl;
     }
-
-
 ?>
-
+<!-- Header Section Begin -->
 <header class="header">
     <div class="container">
         <div class="row">

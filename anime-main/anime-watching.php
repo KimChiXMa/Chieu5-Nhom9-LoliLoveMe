@@ -45,7 +45,6 @@
         $urlVideo = $value['id'];
     }
     
-    var_dump($urlVideo);
     $getListEpisode = $epi->getEpisode($idAnime);
     //var_dump($idAnime);
     $getAllAnime = $anime->getAllAnimes();
@@ -178,7 +177,6 @@
                 // Đợi trang web đã tải xong, sau đó gán src cho iframe
                 var iframe = document.getElementById("ifrvideo");
                 iframe.src = "<?php echo addslashes($urlVideo); ?>"; // Thay đổi URL theo nhu cầu của bạn
-
             }
         </script>
 </body>
