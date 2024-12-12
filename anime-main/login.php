@@ -53,6 +53,8 @@ if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'
     else
     {
         // header('location:login.php');
+        unset($_SESSION['username']);
+        unset($_SESSION['password']);
         $loginstat = "Failed";
     }
 }
