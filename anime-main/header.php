@@ -6,11 +6,14 @@ require "models/item.php";
 require "models/anime_tag.php";
 require "models/epi.php";
 require "models/users.php";
+require "models/tag.php";
+
 
 $anime = new Anime;
 $animetag = new AnimeTag;
 $epi = new Episode;
 $user = new User;
+$tag = new Tag;
 
 //xử lý địa chỉ hình ảnh để nhúng vào web
 function proceedUrl($url)
@@ -19,6 +22,13 @@ function proceedUrl($url)
     $newUrl = "https://drive.google.com/thumbnail?id=" . $idImg . "&sz=w10000";
     return $newUrl;
 }
+
+function proceedVideo($url){
+    $idImg = substr($url,0, 66);
+    $newUrl = $idImg . "preview";
+    return $newUrl;
+}
+
 ?>
 <!-- Header Section Begin -->
 <header class="header">
@@ -38,8 +48,11 @@ function proceedUrl($url)
                             <li class="active"><a href="./index.php">Homepage</a></li>
                             <li><a href="./categories.php">Categories <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
-                                    <li><a href="./categories.php">romance</a></li>
-                                    <li><a href="./categories.php">sci-fi</a></li>
+                                    <?php 
+                                    $listTag = $tag->getAllTag();
+                                    foreach($listTag as $key => $valuetag): ?>
+                                    <li><a href="./categories.php&idtag=<?php echo $valuetag['id_tag']; ?>"><?php echo $valuetag['name_tag']; ?></a></li>
+                                    <?php endforeach;?>
                                 </ul>
                             </li>
 

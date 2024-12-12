@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2024 at 03:45 PM
+-- Generation Time: Dec 12, 2024 at 04:28 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -95,10 +95,28 @@ CREATE TABLE `episode` (
 --
 
 INSERT INTO `episode` (`id_anime`, `tentap`, `id`) VALUES
-(11, 1, 'h'),
+(1, 9, 'https://drive.google.com/file/d/10N_3rk-HSfARsKOYJg_KLNCSSq1EYP1q/view?usp=drive_link'),
+(11, 12, 'https://drive.google.com/file/d/12gm_jnpSepjuTbl4FVI8uw9FQTewLbNI/view?usp=drive_link'),
+(1, 6, 'https://drive.google.com/file/d/14n3_iooBVEVFke6jd2Tqyy5zly16hXaL/view?usp=drive_link'),
+(1, 6, 'https://drive.google.com/file/d/1aRVVBLonoAFxaxi71rFt4Vu4rvI73vFn/view?usp=drive_link'),
+(1, 8, 'https://drive.google.com/file/d/1BKiTjayfPvL9J-fqiv6JOW1qWwjQ86yY/view?usp=drive_link'),
+(1, 2, 'https://drive.google.com/file/d/1djT3Lsv1EO5x7VuslSZVtBakfLH589TM/view?usp=drive_link'),
+(11, 1, 'https://drive.google.com/file/d/1DVasScGV5QResLQGmnxqsiAPZgzJPbWw/view?usp=drive_link'),
+(1, 7, 'https://drive.google.com/file/d/1f-ky8cJoCyEMt87gHJZ7Jq3TXRxPNEdD/view?usp=drive_link'),
 (1, 3, 'https://drive.google.com/file/d/1fdzXKRYH3p_eGyBg5YkrQnRYg9AQS1jT/preview'),
-(1, 1, 'https://drive.google.com/file/d/1HRC4D7it5sgmlDtdGNKTPOvJLNQSTT2O/preview'),
-(1, 2, 'https://drive.google.com/file/d/1hU-B5Y3y-Y5d91ZHszxrkaXWV7V_K-4G/preview');
+(1, 4, 'https://drive.google.com/file/d/1FW-AdWcPXjH_MwZY1b2fw_bHvKk0rKr4/view?usp=drive_link'),
+(1, 1, 'https://drive.google.com/file/d/1HRC4D7it5sgmlDtdGNKTPOvJLNQSTT2O/view?usp=drive_link'),
+(1, 2, 'https://drive.google.com/file/d/1hU-B5Y3y-Y5d91ZHszxrkaXWV7V_K-4G/preview'),
+(1, 3, 'https://drive.google.com/file/d/1hYWb_QzPNqTnfNCLifxfEGRWrimpg46E/view?usp=drive_link'),
+(1, 7, 'https://drive.google.com/file/d/1IrFo-48jE3FKumGDJaMpJ9vQ_zf5adhG/view?usp=drive_link'),
+(1, 10, 'https://drive.google.com/file/d/1mhUmsTbRDOxv8z9AmBUQiJdFq49vh6D6/view?usp=drive_link'),
+(1, 10, 'https://drive.google.com/file/d/1PBzlkrEBTGy-boTHJdVMRut5hCmJLOE2/view?usp=drive_link'),
+(1, 8, 'https://drive.google.com/file/d/1qM3c2CtXI1B44bRwnBs7LnVNtWUlggAg/view?usp=drive_link'),
+(1, 11, 'https://drive.google.com/file/d/1sFGF1F2sAgmbDSqQhcCNehadiaZURyWZ/view?usp=drive_link'),
+(1, 5, 'https://drive.google.com/file/d/1uVUzM6oIvYJ_SpecjpE4QMaOHRUPPuVq/view?usp=drive_link'),
+(1, 9, 'https://drive.google.com/file/d/1WMr91zul_xuJHZiPA6j5erxB3IzSFeUn/view?usp=drive_link'),
+(1, 4, 'https://drive.google.com/file/d/1yW1OY2Ohyrgk-KhsfyoPJeMucyGD9W3Q/view?usp=drive_link'),
+(1, 5, 'https://drive.google.com/file/d/1ZMffvlAbVtzR1QUkHPvjAyyHKttb_Blm/view?usp=drive_link');
 
 -- --------------------------------------------------------
 

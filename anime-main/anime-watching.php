@@ -43,13 +43,13 @@
     }
     
     foreach ($epi->getUrl($idAnime, $episode) as $key => $value) {
-        $urlVideo = $value['id'];
+        $urlVideo = proceedVideo($value['id']);
     }
-    
+
     $getListEpisode = $epi->getEpisode($idAnime);
     //var_dump($idAnime);
     $getAllAnime = $anime->getAllAnimes();
-    var_dump($getListEpisode);
+    //var_dump($getListEpisode);
 
     foreach ($getAllAnime as $key => $value):
         if ($idAnime == $value['id']):
