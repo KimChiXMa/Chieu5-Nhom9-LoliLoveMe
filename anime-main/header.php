@@ -51,7 +51,7 @@ function proceedVideo($url){
                                     <?php 
                                     $listTag = $tag->getAllTag();
                                     foreach($listTag as $key => $valuetag): ?>
-                                    <li><a href="./categories.php&idtag=<?php echo $valuetag['id_tag']; ?>"><?php echo $valuetag['name_tag']; ?></a></li>
+                                    <li><a href="./categories.php?idtag=<?php echo $valuetag['id_tag']; ?>"><?php echo $valuetag['name_tag']; ?></a></li>
                                     <?php endforeach;?>
                                 </ul>
                             </li>

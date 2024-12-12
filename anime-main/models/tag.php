@@ -10,4 +10,16 @@ class Tag extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
     }
+
+
+    //lấy tên tag
+    public function getNameTag($idTag)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `tag` WHERE id_tag = ?;");
+        $sql->bind_param('i', $idTag);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
 }

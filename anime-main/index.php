@@ -34,7 +34,10 @@ session_start();
         <div class="loader"></div>
     </div>
 
-    <?php include "header.php"; ?>
+    <?php include "header.php";
+
+
+    ?>
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
@@ -105,7 +108,8 @@ session_start();
                         <div class="row">
                             <?php
                             $getAllAnime = $anime->getAllAnimes();
-                            foreach ($getAllAnime as $key => $value): ?>
+                            foreach ($getAllAnime as $key => $value):
+                                $getTag = $animetag->getTag($value['id']); ?>
 
                                 <div class="col-lg-3 col-md-6 col-sm-6">
                                     <div class="product__item">
@@ -114,8 +118,9 @@ session_start();
                                         </div>
                                         <div class="product__item__text">
                                             <ul>
-                                                <li>Active</li>
-                                                <li>Movie</li>
+                                                <?php foreach ($getTag as $keyTag => $valueTag): ?>
+                                                    <li><?php echo $valueTag['name_tag']; ?></li>
+                                                <?php endforeach; ?>
                                             </ul>
                                             <h5><a href="anime-details.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></h5>
                                         </div>
@@ -128,7 +133,7 @@ session_start();
                     </div>
 
                 </div>
-                
+
             </div>
         </div>
     </section>
