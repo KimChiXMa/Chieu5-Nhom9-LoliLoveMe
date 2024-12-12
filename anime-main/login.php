@@ -43,10 +43,12 @@ $loginstat = "";
 if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'])) {
     $username = $_POST['user_name_email_login'];
     $password = $_POST['user_password_login'];
+    $UserLogin = $user->UserLogin($_POST['user_name_email_login'],$_POST['user_password_login']);
     //var_dump($_POST['user_password_login']);
-    if (count($user->UserLogin($_POST['user_name_email_login'],$_POST['user_password_login']))>0) {
+    if (count($UserLogin)>0) {
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
+        $_SESSION['UserLogin'] = $UserLogin;
         $loginstat = "Successfully";
         header('location:anime-watching.php');
     }
@@ -85,7 +87,7 @@ if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'
                         <form action="" method="post">
                             <div class="input__item">
                                 <input name="user_name_email_login" type="text" placeholder="Username or Email">
-                                <span class="icon_mail"></span>
+                                <span class="icon_profile"></span>
                             </div>
                             <div class="input__item">
                                 <input name="user_password_login" type="text" placeholder="Password">
@@ -105,7 +107,7 @@ if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'
                 <div class="col-lg-6">
                     <div class="login__register">
                         <h3>Dont’t Have An Account?</h3>
-                        <a href="#" class="primary-btn">Register Now</a>
+                        <a href="signup.php" class="primary-btn">Register Now</a>
                     </div>
                 </div>
             </div>
