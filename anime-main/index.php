@@ -42,45 +42,27 @@ session_start();
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-
-                <div onclick="goToAnimeDetail('1')" class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
-                    <div id="move_detail" class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="anime-watching.php"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
+                <?php $getidAnime = $anime->getAnimeById(3);
+                foreach ($getidAnime as $key => $value):
+                    $getTag = $animetag->getTag($value['id']);
+                    ?>                                 
+                    <div onclick="goToAnimeDetail('<?php echo $value['id']?>')" class="hero__items set-bg"
+                        data-setbg="<?php echo proceedUrl($value['thumbnail']); ?>">
+                        <div id="move_detail" class="row">
+                            <div class="col-lg-6">
+                                <div class="hero__text">
+                                    <div class="label">Adventure</div>
+                                    <h2><?php echo $value['name']; ?></h2>
+                                    <p>
+                                    <p><?php echo substr($value['descrip'], 0, 50); ?></p>
+                                    </p>
+                                    <a href="anime-watching.php"><span>Watch Now</span> <i
+                                            class="fa fa-angle-right"></i></a>
+                                </div>
                         </div>
                     </div>
                 </div>
-                <div onclick="goToAnimeDetail('2')" class="hero__items set-bg"
-                    data-setbg="img/hero/hero-1.jpg">
-                    <div id="move_detail" class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="anime-watching.php"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div onclick="goToAnimeDetail('3')" class="hero__items set-bg"
-                    data-setbg="img/hero/hero-1.jpg">
-                    <div id="move_detail" class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="anime-watching.php"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -107,13 +89,24 @@ session_start();
                         </div>
                         <div class="row">
                             <?php
+
+                            // hiển thị 2 sản phẩm trên 1 trang
+                            // Lấy số trang trên thanh địa chỉ
+                            //$page = isset($_GET['page']) ? $_GET['page'] : 1;
+                            // Tính tổng số dòng, ví dụ kết quả là 18
+                            // $total = count($anime->getAnimeByTag($idTag));
+                            // lấy đường dẫn đến file hiện hành
+                            // $url = $_SERVER['PHP_SELF'] . "?idtag=" . $idTag;
+                            
                             $getAllAnime = $anime->getAllAnimes();
+                            //var_dump($getAllAnime);
                             foreach ($getAllAnime as $key => $value):
                                 $getTag = $animetag->getTag($value['id']); ?>
 
                                 <div class="col-lg-3 col-md-6 col-sm-6">
                                     <div class="product__item">
-                                        <div class="product__item__pic set-bg" data-setbg="<?php echo proceedUrl($value['thumbnail']); ?>">
+                                        <div class="product__item__pic set-bg"
+                                            data-setbg="<?php echo proceedUrl($value['thumbnail']); ?>">
                                             <div class="ep"><?php echo $value['so_tap']; ?> tập</div>
                                         </div>
                                         <div class="product__item__text">
@@ -122,7 +115,9 @@ session_start();
                                                     <li><?php echo $valueTag['name_tag']; ?></li>
                                                 <?php endforeach; ?>
                                             </ul>
-                                            <h5><a href="anime-details.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></h5>
+                                            <h5><a
+                                                    href="anime-details.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a>
+                                            </h5>
                                         </div>
                                     </div>
                                 </div>
@@ -163,10 +158,13 @@ session_start();
                 </div>
                 <div class="col-lg-3">
                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>
+                        Copyright &copy;
+                        <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </script> All rights reserved | This template is made with <i class="fa fa-heart"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
 
                 </div>
             </div>
