@@ -9,9 +9,18 @@ class Anime extends Db
         $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $item;
     }
+    public function getAnimeByID($idanime)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `anime` WHERE `id` = ?");
+        $sql->bind_param("i",$idanime);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
+    }
     public function getAllEpOfAnime($id_anime)
     {
-        $sql = self::$connection->prepare("SELECT `episode`.* FROM `episode`,`anime` WHERE anime.id = episode.id_anime AND episode.id_anime = ? ORDER BY tentap ASC");
+        $sql = self::$connection->prepare("SELECT `episode`.*, `anime`.`name` FROM `episode`,`anime` WHERE anime.id = episode.id_anime AND episode.id_anime = ? ORDER BY tentap ASC");
         $sql->bind_param("i",$id_anime);
         $sql->execute();
         $item = array();

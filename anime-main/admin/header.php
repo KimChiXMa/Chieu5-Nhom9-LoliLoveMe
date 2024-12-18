@@ -1,9 +1,9 @@
 <?php
 include "config.php";
 include "models/db.php";
-include "models/item.php";
-$anime = new Anime();
-$getAllItem = $anime->getAllAnime();
+include "models/anime.php";
+$anime = new Anime;
+$getAllAnime = $anime->getAllAnime();
 ?>
 
 

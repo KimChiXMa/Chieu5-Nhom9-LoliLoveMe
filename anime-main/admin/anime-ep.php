@@ -7,7 +7,7 @@ include "sidebar.php";
     <div id="content-header">
         <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom current"><i
                     class="icon-home"></i> Home</a></div>
-        <h1>Manage Anime</h1>
+        <h1><?php echo $anime->getAnimeByID($_GET['id-anime'])[0]['name'] ?></h1>
     </div>
     <div class="container-fluid">
         <hr>
@@ -32,7 +32,10 @@ include "sidebar.php";
                             </thead>
                             <tbody>
 
-                                <?php foreach ($anime->getAllEpOfAnime(1) as $value): ?>
+                                <?php
+                                if(isset($_GET['id-anime'])):
+                                foreach ($anime->getAllEpOfAnime($_GET['id-anime']) as $value):
+                                    ?>
 
                                     <tr class="">
                                         <td style="text-align: center;"><?php echo $value['tentap'] ?></td>
@@ -49,7 +52,7 @@ include "sidebar.php";
                                         </td>
                                     </tr>
 
-                                <?php endforeach; ?>
+                                <?php endforeach; endif;?>
                             </tbody>
                         </table>
                         <div class="row" style="margin-left: 18px;">
@@ -82,14 +85,14 @@ include "sidebar.php";
             if (document.execCommand("copy")) {
                 element.style.backgroundColor = "#d3f9d8";
             }
-            else{
+            else {
                 element.style.backgroundColor = "#ff0000";
             }
-        }catch(err){
+        } catch (err) {
             console.log("Copy hổng có được! Huhuhu")
         }
 
-    document.body.removeChild(tempInput); // 6
+        document.body.removeChild(tempInput); // 6
         //lưu lại thằng được chọn gần nhất
         lastCopiedElement = element;
     }
