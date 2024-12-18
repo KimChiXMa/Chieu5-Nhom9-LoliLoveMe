@@ -20,7 +20,6 @@ class Anime extends Db
     // }
     public function getAllEpOfAnime($id_anime)
     {
-        $sql = self::$connection->prepare("SELECT `episode`.* FROM `episode`,`anime` WHERE anime.id = episode.id_anime AND episode.id_anime = ? ORDER BY tentap ASC");
         $sql = self::$connection->prepare("SELECT `episode`.*, `anime`.`name` FROM `episode`,`anime` WHERE anime.id = episode.id_anime AND episode.id_anime = ? ORDER BY tentap ASC");
         $sql->bind_param("i", $id_anime);
         $sql->execute();
@@ -114,7 +113,7 @@ class Anime extends Db
         WHERE anime_tag.id_tag = ? AND anime.id = anime_tag.id_anime AND tag.id_tag = anime_tag.id_tag 
         ORDER BY anime.name DESC
         LIMIT ?,? ;");
-        $sql->bind_param("iii", $idTag, $start, $count);
+        $sql->bind_param("iii", $idTag,$start,$count);
         $sql->execute();
         $animes = array();
         $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -150,6 +149,7 @@ class Anime extends Db
         }
         return $link;
     }
+
 }
 
 
