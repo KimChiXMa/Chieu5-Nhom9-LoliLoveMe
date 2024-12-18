@@ -1,7 +1,7 @@
 <?php
 
 /** The name of the database*/
-define('DB_NAME', 'news');
+define('DB_NAME', 'project');
 /** MySQL database username */
 define('DB_USER', 'root');
 /** MySQL database password */

@@ -22,9 +22,9 @@ include "sidebar.php";
                                     table-striped">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Author</th>
+                                    <th>Ep</th>
+                                    <th>Link Anime (Click to copy)</th>
+                                    <th>Open link</th>
                                     <th>Studio</th>
                                     <th>Descrip</th>
                                     <th>Ep Num</th>
@@ -33,18 +33,13 @@ include "sidebar.php";
                             </thead>
                             <tbody>
 
-                                <?php foreach ($getAllItem as $value) :  ?>
+                                <?php foreach ($anime->getAllEpOfAnime(1) as $value) :  ?>
 
                                     <tr class="">
-                                        <td width="250">
-                                            <img src="<?php echo $item->proceedImg($value['thumbnail']); ?>" />
-                                        </td>
-                                        <td><?php echo $value['name']; ?></td>
-                                        <td><?php echo $value['author']; ?></td>
-                                        <td><?php echo $value['studio']; ?></td>
-                                        <td><?php echo $value['descrip']; ?></td>
-                                        <td><?php echo $value['so_tap']; ?></td>
-                                        <td>
+                                        <td style="text-align: center;"><?php echo $value['tentap'] ?></td>
+                                        <td onclick="copyLink('<?php echo $value['id']; ?>',this)" style="text-align: center;"><?php echo $value['id'] ?></td>
+                                        <td style="text-align: center;"><a href="<?php echo $value['id']; ?>" target="_blank"><button class="btn btn-success btn-mini">Open</button></a></td>
+                                        <td style="text-align: center;">
                                             <a href="#45" class="btn
                                                     btn-success btn-mini">Edit</a>
                                             <a href="#45" class="btn
@@ -69,5 +64,18 @@ include "sidebar.php";
         </div>
     </div>
 </div>
+<script>
+function copyLink(id,element) {
+    var tempInput = document.createElement("input"); // 1
+    tempInput.value = id; // 2
+    document.body.appendChild(tempInput); // 3
+    tempInput.select(); // 4
+    document.execCommand("copy"); // 5
+    document.body.removeChild(tempInput); // 6
+    element.style.backgroundColor = "#d3f9d8";
+    alert("Đã sao chép link"); // 7
+}
+
+</script>
 <!-- END CONTENT -->
 <?php include "footer.php" ?>

@@ -1,11 +1,18 @@
 <?php
-class Item extends Db
+class Anime extends Db
 {
-    public function getAllItems()
+    public function getAllAnime()
     {
-        $sql = self::$connection->prepare("SELECT items.*,author.name,categories.name 
-        FROM `categories`,items,author 
-        WHERE categories.id = items.category and author.id = items.author;");
+        $sql = self::$connection->prepare("SELECT * FROM `anime`");
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
+    }
+    public function getAllEpOfAnime($id_anime)
+    {
+        $sql = self::$connection->prepare("SELECT `episode`.* FROM `episode`,`anime` WHERE anime.id = episode.id_anime AND episode.id_anime = ? ORDER BY tentap ASC");
+        $sql->bind_param("i",$id_anime);
         $sql->execute();
         $item = array();
         $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -46,4 +53,17 @@ class Item extends Db
         }
         return $link;
     }
+    //xử lý địa chỉ hình ảnh để nhúng vào web
+function proceedImg($url)
+{
+    $idImg = substr($url, 32, 33);
+    $newUrl = "https://drive.google.com/thumbnail?id=" . $idImg . "&sz=w10000";
+    return $newUrl;
+}
+//xử lý địa chỉ video để nhúng vào web
+function proceedVideo($url){
+    $idvid = substr($url,0, 66);
+    $newUrl = $idvid . "preview";
+    return $newUrl;
+}
 }

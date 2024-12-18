@@ -2,8 +2,8 @@
 include "config.php";
 include "models/db.php";
 include "models/item.php";
-$item = new Item;
-$getAllItem = $item->getAllItems();
+$anime = new Anime();
+$getAllItem = $anime->getAllAnime();
 ?>
 
 

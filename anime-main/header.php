@@ -22,10 +22,10 @@ function proceedUrl($url)
     $newUrl = "https://drive.google.com/thumbnail?id=" . $idImg . "&sz=w10000";
     return $newUrl;
 }
-
+//xử lý địa chỉ video để nhúng vào web
 function proceedVideo($url){
-    $idImg = substr($url,0, 66);
-    $newUrl = $idImg . "preview";
+    $idvid = substr($url,0, 66);
+    $newUrl = $idvid . "preview";
     return $newUrl;
 }
 
