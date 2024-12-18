@@ -52,6 +52,7 @@
     }
     ?>
 
+
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
         <div class="container">
@@ -120,12 +121,21 @@
                         </div>
                     </div>
                     <div class="product__pagination">
-                        <a href="#" class="current-page">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
+                      <?php 
+                      if (isset($_GET['idtag'])):
+                        $idtag = $_GET['idtag'];
+                        // hiển thị 2 sản phẩm trên 1 trang
+                        $count = 2;
+                        // Lấy số trang trên thanh địa chỉ
+                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                        // Tính tổng số dòng, ví dụ kết quả là 18
+                        $total = count($anime->getAnimeByTag($idTag));
+                        // lấy đường dẫn đến file hiện hành
+                        $url = $_SERVER['PHP_SELF'] . "?idtag=" . $idTag;
+                        echo $anime->paginateTag($url,$total,$count) ?>
+
                         <a href="#"><i class="fa fa-angle-double-right"></i></a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">
@@ -303,7 +313,6 @@
             window.location.href = newUrl;
         }
     </script>
-
 </body>
 
 </html>
