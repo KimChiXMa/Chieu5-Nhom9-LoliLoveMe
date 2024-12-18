@@ -82,7 +82,7 @@ include "sidebar.php";
                                     </select> *
                                 </div>
                             </div>
-                            <div class="form-actions">
+                            <div class="form-actions" style="text-align: right;">
                                 <button type="submit" class="btn btn-success">Add</button>
                             </div>
                         </form>
