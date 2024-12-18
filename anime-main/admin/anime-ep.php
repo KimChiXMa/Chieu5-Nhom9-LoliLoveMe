@@ -5,7 +5,8 @@ include "sidebar.php";
 <!-- BEGIN CONTENT -->
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i> Home</a></div>
+        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom current"><i
+                    class="icon-home"></i> Home</a></div>
         <h1>Manage Anime</h1>
     </div>
     <div class="container-fluid">
@@ -25,25 +26,26 @@ include "sidebar.php";
                                     <th>Ep</th>
                                     <th>Link Anime (Click to copy)</th>
                                     <th>Open link</th>
-                                    <th>Studio</th>
-                                    <th>Descrip</th>
-                                    <th>Ep Num</th>
-                                    <th></th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <?php foreach ($anime->getAllEpOfAnime(1) as $value) :  ?>
+                                <?php foreach ($anime->getAllEpOfAnime(1) as $value): ?>
 
                                     <tr class="">
                                         <td style="text-align: center;"><?php echo $value['tentap'] ?></td>
-                                        <td onclick="copyLink('<?php echo $value['id']; ?>',this)" style="text-align: center;"><?php echo $value['id'] ?></td>
-                                        <td style="text-align: center;"><a href="<?php echo $value['id']; ?>" target="_blank"><button class="btn btn-success btn-mini">Open</button></a></td>
-                                        <td style="text-align: center;">
-                                            <a href="#45" class="btn
-                                                    btn-success btn-mini">Edit</a>
-                                            <a href="#45" class="btn
-                                                    btn-danger btn-mini">Delete</a>
+                                        <td onclick="copyLink('<?php echo $value['id']; ?>',this)"
+                                            style="text-align: center;"><?php echo $value['id'] ?></td>
+                                        <td style="text-align: center; width: 150px;"><a href="<?php echo $value['id']; ?>"
+                                                target="_blank"><button class="btn btn-success">Open</button></a>
+                                        </td>
+                                        <td style="text-align: center; width: 150px;">
+                                            <a href="#45" class="btn btn-success">Edit</a>
+                                        </td>
+                                        <td style="text-align: center; width: 150px;">
+                                            <a href="#45" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
 
@@ -65,16 +67,32 @@ include "sidebar.php";
     </div>
 </div>
 <script>
-function copyLink(id,element) {
-    var tempInput = document.createElement("input"); // 1
-    tempInput.value = id; // 2
-    document.body.appendChild(tempInput); // 3
-    tempInput.select(); // 4
-    document.execCommand("copy"); // 5
+    var lastCopiedElement = null; // Biến để lưu trữ phần tử cuối cùng được sao chép
+    function copyLink(id, element) {
+        //nếu đã có cái chọn trước đó, set bg thành default
+        if (lastCopiedElement) {
+            lastCopiedElement.style.backgroundColor = "";
+        }
+
+        var tempInput = document.createElement("input"); // 1
+        tempInput.value = id; // 2
+        document.body.appendChild(tempInput); // 3
+        tempInput.select(); // 4
+        try {
+            if (document.execCommand("copy")) {
+                element.style.backgroundColor = "#d3f9d8";
+            }
+            else{
+                element.style.backgroundColor = "#ff0000";
+            }
+        }catch(err){
+            console.log("Copy hổng có được! Huhuhu")
+        }
+
     document.body.removeChild(tempInput); // 6
-    element.style.backgroundColor = "#d3f9d8";
-    alert("Đã sao chép link"); // 7
-}
+        //lưu lại thằng được chọn gần nhất
+        lastCopiedElement = element;
+    }
 
 </script>
 <!-- END CONTENT -->

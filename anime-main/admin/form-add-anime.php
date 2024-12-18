@@ -7,7 +7,7 @@ include "sidebar.php";
     <div id="content-header">
         <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i>
                 Home</a></div>
-        <h1>Add New Items</h1>
+        <h1>Add anime</h1>
     </div>
     <div class="container-fluid">
         <hr>

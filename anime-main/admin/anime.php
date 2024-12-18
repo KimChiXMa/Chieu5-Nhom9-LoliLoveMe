@@ -13,7 +13,7 @@ include "sidebar.php";
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
-                    <div class="widget-title"> <span class="icon"><a href="form.html"> <i class="icon-plus"></i>
+                    <div class="widget-title"> <span class="icon"><a href="form-add-anime.php"> <i class="icon-plus"></i>
                             </a></span>
                         <h5>Anime</h5>
                     </div>
@@ -36,19 +36,16 @@ include "sidebar.php";
                                 <?php foreach ($getAllItem as $value) :  ?>
 
                                     <tr class="">
-                                        <td width="250">
-                                            <img src="<?php echo $item->proceedImg($value['thumbnail']); ?>" />
+                                        <td width="200">
+                                            <img src="<?php echo $anime->proceedImg($value['thumbnail']); ?>" />
                                         </td>
-                                        <td><?php echo $value['name']; ?></td>
-                                        <td><?php echo $value['author']; ?></td>
-                                        <td><?php echo $value['studio']; ?></td>
+                                        <td style="text-align: center; vertical-align: middle;"><?php echo $value['name']; ?></td>
+                                        <td style="text-align: center; vertical-align: middle;"><?php echo $value['author']; ?></td>
+                                        <td style="text-align: center; vertical-align: middle;"><?php echo $value['studio']; ?></td>
                                         <td><?php echo $value['descrip']; ?></td>
                                         <td><?php echo $value['so_tap']; ?></td>
                                         <td>
-                                            <a href="#45" class="btn
-                                                    btn-success btn-mini">Edit</a>
-                                            <a href="#45" class="btn
-                                                    btn-danger btn-mini">Delete</a>
+                                            <a href="anime-ep.php"><button button class="btn btn-success">Edit</button></a>
                                         </td>
                                     </tr>
 

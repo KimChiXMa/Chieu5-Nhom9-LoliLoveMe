@@ -4,8 +4,8 @@
           <ul>
                   <li><a href="index.php"><i class="icon icon-home"></i> <span>Dashboard</span></a>
                   </li>
-                  <li> <a href="items.php"><i class="icon icon-th-list"></i>
-                                  <span>Items</span></a></li>
+                  <li> <a href="anime.php"><i class="icon icon-th-list"></i>
+                                  <span>Anime</span></a></li>
                   <li> <a href="categories.php"><i class="icon icon-th-list"></i>
                                   <span>Catgories</span></a></li>
                   <li> <a href="users.php"><i class="icon icon-th-list"></i>
