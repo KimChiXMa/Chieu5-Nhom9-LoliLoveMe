@@ -34,7 +34,18 @@
     <?php
     include 'header.php';
     $idTag = $_GET['idtag'];
+
     $getAnimeByTag = $anime->getAnimeByTag($idTag);
+
+    if (isset($_GET['sort'])) {
+        $sort = $_GET['sort'];
+        if ($sort == "a-z") {
+            $getAnimeByTag = $anime->getAnimeByTagAZ($idTag);
+        } else if ($sort == "z-a") {
+            $getAnimeByTag = $anime->getAnimeByTagZA($idTag);
+        }
+    }
+
     $arrayTagName = $tag->getNameTag($idTag);
     foreach ($arrayTagName as $key => $value) {
         $getTagName = $value['name_tag'];
@@ -73,10 +84,10 @@
                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="product__page__filter">
                                         <p>Order by:</p>
-                                        <select>
-                                            <option value="">A-Z</option>
-                                            <option value="">1-10</option>
-                                            <option value="">10-50</option>
+                                        <select id="sortSelect" onchange="handleSelectChange()">
+                                            <option value="recent">Recent Add</option>
+                                            <option value="a-z">A-Z</option>
+                                            <option value="z-a">Z-A</option>
                                         </select>
                                     </div>
                                 </div>
@@ -90,7 +101,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg" data-setbg="<?php echo proceedUrl($valueAnime['thumbnail']); ?>">
-                                            <div class="ep"><?php echo $valueAnime['so_tap'];?> tập</div>
+                                            <div class="ep"><?php echo $valueAnime['so_tap']; ?> tập</div>
 
                                         </div>
 
@@ -283,6 +294,15 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        function handleSelectChange() {
+            const selectElement = document.getElementById('sortSelect');
+            const typeSort = selectElement.value;
+            const url = "<?php echo $_SERVER['PHP_SELF'] . "?idtag=" . $idTag; ?>"
+            const newUrl = `${url}&sort=${typeSort}`;
+            window.location.href = newUrl;
+        }
+    </script>
 
 </body>
 
