@@ -34,15 +34,16 @@
     <?php
     include 'header.php';
     $idTag = $_GET['idtag'];
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
     $getAnimeByTag = $anime->getAnimeByTag($idTag);
-
+    $sort = "recent add";
     if (isset($_GET['sort'])) {
         $sort = $_GET['sort'];
         if ($sort == "a-z") {
             $getAnimeByTag = $anime->getAnimeByTagAZ($idTag);
         } else if ($sort == "z-a") {
-            $getAnimeByTag = $anime->getAnimeByTagZA($idTag);
+            //$getAnimeByTag = $anime->getAnimeByTagZA($idTag);
         }
     }
 
@@ -121,21 +122,22 @@
                         </div>
                     </div>
                     <div class="product__pagination">
-                      <?php 
-                      if (isset($_GET['idtag'])):
-                        $idtag = $_GET['idtag'];
-                        // hiển thị 2 sản phẩm trên 1 trang
-                        $count = 2;
+                      <?php
+                            //   if (isset($_GET['idtag'])):
+
+                            // hiển thị 2 sản phẩm trên 1 trang
+                            //$sort = $_GET['sort'];
+
+                        $count = 3;
                         // Lấy số trang trên thanh địa chỉ
-                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                        // Tính tổng số dòng, ví dụ kết quả là 18
+                        // Tính tổng số anime theo thể loại, ví dụ kết quả là 18
                         $total = count($anime->getAnimeByTag($idTag));
                         // lấy đường dẫn đến file hiện hành
-                        $url = $_SERVER['PHP_SELF'] . "?idtag=" . $idTag;
-                        echo $anime->paginateTag($url,$total,$count) ?>
+                        $url = $_SERVER['PHP_SELF'] . "?idtag=" . $idTag. "&sort=".$sort;
+                        echo $anime->paginateCate($url,$total,$count); ?>
 
-                        <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                        <?php endif; ?>
+                        <!-- <a href="#"><i class="fa fa-angle-double-right"></i></a> -->
+                        <?php //endif; ?>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">

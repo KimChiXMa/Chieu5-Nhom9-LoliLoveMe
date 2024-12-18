@@ -1,4 +1,3 @@
-@ -1,70 +1,79 @@
 <?php
 class Anime extends Db
 {
@@ -55,12 +54,13 @@ class Anime extends Db
 
 
 
-    function paginate($url, $total, $count)
+    //Hàm in paginate theo cate Hy
+    function paginateCate($url, $total, $count)
     {
         $totalLinks = ceil($total / $count);
         $link = "";
         for ($j = 1; $j <= $totalLinks; $j++) {
-            $link = $link . "<a class='btn btn-sm btn-outline-secondary m-1' href='$url&page=$j'> $j </a>";
+            $link = $link . "<a href='$url&page=$j'> $j</a>";
         }
         return $link;
     }

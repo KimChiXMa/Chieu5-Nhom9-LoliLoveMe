@@ -48,7 +48,7 @@
 
     $getListEpisode = $epi->getEpisode($idAnime);
     //var_dump($idAnime);
-    $getAllAnime = $anime->getAllAnimes();
+    $getAllAnime = $anime->getAllAnime();
     //var_dump($getListEpisode);
 
     foreach ($getAllAnime as $key => $value):
