@@ -33,7 +33,7 @@ include "sidebar.php";
                             </thead>
                             <tbody>
 
-                                <?php foreach ($getAllItem as $value) :  ?>
+                                <?php foreach ($getAllAnime as $value) :  ?>
 
                                     <tr class="">
                                         <td width="200">
@@ -45,7 +45,7 @@ include "sidebar.php";
                                         <td><?php echo $value['descrip']; ?></td>
                                         <td><?php echo $value['so_tap']; ?></td>
                                         <td>
-                                            <a href="anime-ep.php"><button button class="btn btn-success">Edit</button></a>
+                                            <a href=<?php echo "anime-ep.php?id-anime=".$value['id'] ?>><button button class="btn btn-success">Edit</button></a>
                                         </td>
                                     </tr>
 
