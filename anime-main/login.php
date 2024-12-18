@@ -50,7 +50,7 @@ if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'
         $_SESSION["password"] = $password;
         $_SESSION['UserLogin'] = $UserLogin;
         $loginstat = "Successfully";
-        header('location:anime-watching.php');
+        header('location:index.php');
     }
     else
     {
