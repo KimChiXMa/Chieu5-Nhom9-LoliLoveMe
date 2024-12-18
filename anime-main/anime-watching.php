@@ -97,7 +97,7 @@
                             foreach ($getListEpisode as $episo => $valueEpi):
                             ?>
 
-                                <a href="anime-watching.php?id=<?php echo $idAnime;?>&episode=<?php echo $valueEpi['tentap'];?>">Ep <?php echo $valueEpi['tentap']; ?></a>
+                                <a href="anime-watching.php?id=<?php echo $idAnime;?>&episode=<?php echo $valueEpi['tentap'];?>">Tập <?php echo $valueEpi['tentap']; ?></a>
 
                             <?php
                             endforeach;

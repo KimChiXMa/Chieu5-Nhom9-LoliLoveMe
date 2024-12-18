@@ -92,11 +92,12 @@ session_start();
 
                             // hiển thị 2 sản phẩm trên 1 trang
                             // Lấy số trang trên thanh địa chỉ
-                            //$page = isset($_GET['page']) ? $_GET['page'] : 1;
+                            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                           
                             // Tính tổng số dòng, ví dụ kết quả là 18
-                            // $total = count($anime->getAnimeByTag($idTag));
+                             //$total = count($anime->getAnimeByTag($idTag));
                             // lấy đường dẫn đến file hiện hành
-                            // $url = $_SERVER['PHP_SELF'] . "?idtag=" . $idTag;
+                             //$url = $_SERVER['PHP_SELF'] . "?idtag=" . $idTag;
                             
                             $getAllAnime = $anime->getAllAnimes();
                             //var_dump($getAllAnime);
