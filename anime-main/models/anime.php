@@ -36,12 +36,14 @@ class Anime extends Db
         return $animes;
     }
 
-    public function getAnimeByTagZA($idTag)
+    public function getAnimeByTagZA($idTag , $page , $count)
     {
+        $start = ($page - 1) * $count;
         $sql = self::$connection->prepare("SELECT *,tag.name_tag 
         FROM anime,anime_tag,tag 
         WHERE anime_tag.id_tag = ? AND anime.id = anime_tag.id_anime AND tag.id_tag = anime_tag.id_tag 
-        ORDER BY anime.name DESC;");
+        ORDER BY anime.name DESC
+        LIMIT ;");
         $sql->bind_param("i", $idTag);
         $sql->execute();
         $animes = array();
