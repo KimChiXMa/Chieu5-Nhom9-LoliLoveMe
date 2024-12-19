@@ -22,4 +22,14 @@ class Tag extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
     }
+    public function getAllTagByAnimeID($idanime)
+    {
+        $sql = self::$connection->prepare("SELECT `tag`.`name_tag`,`tag`.`id_tag` FROM `anime_tag`,`tag`,`anime` WHERE `anime_tag`.`id_anime` = `anime`.`id` AND `anime_tag`.`id_tag` = `tag`.`id_tag` AND `anime`.`id` = ?;");
+        $sql->bind_param('i', $idanime);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
+    
 }

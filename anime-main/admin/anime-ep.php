@@ -1,4 +1,8 @@
 <?php
+if(!isset($_GET['id-anime'])){
+    header("location:anime.php");
+    exit();
+}
 include "header.php";
 include "sidebar.php";
 ?>
@@ -58,7 +62,8 @@ include "sidebar.php";
                                     category</label>
                                 <div class="controls">
                                     <select name="cate" id="cate" multiple="multiple">
-                                        <option value="1">The Gioi</option>
+                                        
+                                        <option value="1" selected>The Gioi</option>
                                         <option value="2">The Thao</option>
                                     </select> *
                                 </div>
@@ -72,7 +77,7 @@ include "sidebar.php";
                             <div class="control-group">
                                 <label class="control-label">Chap</label>
                                 <div class="controls">
-                                    <input type="number" name="inputsotap" id="">
+                                    <input type="number" name="inputsotap" id="" value="<?php echo $anime_info['so_tap']; ?>">
                                 </div>
                             </div>
                             <div class="form-actions" style="text-align: right;">
