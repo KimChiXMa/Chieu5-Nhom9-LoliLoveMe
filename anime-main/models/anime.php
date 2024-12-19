@@ -91,14 +91,29 @@ class Anime extends Db
         $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $animes;
     }
-
-    public function getAnimeByTagAZ($idTag)
+    public function getAnimeByTagRecentAdd($idTag, $page, $count)
     {
+        $start = ($page - 1) * $count;
+        $sql = self::$connection->prepare("SELECT *,tag.name_tag 
+                                        FROM anime,anime_tag,tag 
+                                        WHERE anime_tag.id_tag = ? AND anime.id = anime_tag.id_anime AND tag.id_tag = anime_tag.id_tag
+                                        ORDER BY anime.id
+                                        LIMIT ?,?;");
+        $sql->bind_param("iii", $idTag, $start, $count);
+        $sql->execute();
+        $animes = array();
+        $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $animes;
+    }
+    public function getAnimeByTagAZ($idTag, $page, $count)
+    {
+        $start = ($page - 1) * $count;
         $sql = self::$connection->prepare("SELECT *,tag.name_tag 
         FROM anime,anime_tag,tag 
         WHERE anime_tag.id_tag = ? AND anime.id = anime_tag.id_anime AND tag.id_tag = anime_tag.id_tag 
-        ORDER BY anime.name ASC;");
-        $sql->bind_param("i", $idTag);
+        ORDER BY anime.name ASC
+        LIMIT ?,? ;");
+        $sql->bind_param("iii", $idTag, $start, $count);
         $sql->execute();
         $animes = array();
         $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
