@@ -11,7 +11,18 @@ class Tag extends Db
         return $items;
     }
 
-
+    public function checkSelectedTag($idanime,$idtag)
+    {
+        $sql = self::$connection->prepare("SELECT `anime_tag`.`id_tag` FROM `anime_tag` WHERE `anime_tag`.`id_tag` = ? AND `anime_tag`.`id_anime` = ?");
+        $sql->bind_param("ii",$idtag,$idanime);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        if(count($item)>0){
+            return true;
+        }
+        return false;
+    }
     //lấy tên tag
     public function getNameTag($idTag)
     {

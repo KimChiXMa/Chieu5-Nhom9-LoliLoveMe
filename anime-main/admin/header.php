@@ -2,7 +2,9 @@
 include "config.php";
 include "models/db.php";
 include "models/anime.php";
+include "../models/tag.php";
 $anime = new Anime;
+$tag = new Tag;
 $getAllAnime = $anime->getAllAnime();
 ?>
 

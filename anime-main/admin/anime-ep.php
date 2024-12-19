@@ -1,10 +1,15 @@
 <?php
-if(!isset($_GET['id-anime'])){
+if (!isset($_GET['id-anime'])) {
     header("location:anime.php");
     exit();
 }
+
 include "header.php";
 include "sidebar.php";
+$huhu = 0;
+if (isset($_GET['txtAnime_name']) && isset($_GET['txtAuthor']) && isset($_GET['txtStudio']) && isset($_GET['content'])) {
+    $anime->updateAnime($_GET['txtAnime_name'], $_GET['txtAuthor'], $_GET['txtStudio'], $_GET['content'], "ihentai.uk", $_GET['inputsotap'], $_GET['id-anime']);
+}
 ?>
 <!-- BEGIN CONTENT -->
 <div id="content">
@@ -31,30 +36,36 @@ include "sidebar.php";
                     </div>
                     <div class="widget-content nopadding vieweditanime">
                         <!-- BEGIN FORM -->
-                        <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="<?php if (isset($_POST['txtAnime_name']) && isset($_POST['txtAuthor']) && isset($_POST['txtStudio']) && isset($_POST['content'])) {
+    $anime->updateAnime($_POST['txtAnime_name'], $_POST['txtAuthor'], $_POST['txtStudio'], $_POST['content'], "ihentai.uk",$_POST['inputsotap'],$_GET['id-anime']);
+    echo $_SERVER['PHP_SELF']."?id-anime="."1";
+}?>" method="post" class="form-horizontal" enctype="multipart/form-data">
                             <div class="control-group">
                                 <label class="control-label">Name</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" name="txtAnime_name" value="<?php echo $anime_info['name']; ?>"/> *
+                                    <input required type="text" class="span11" name="txtAnime_name"
+                                        value="<?php echo $anime_info['name']; ?>" /> *
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label">Author</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" name="txtAuthor" value="<?php echo $anime_info['author']; ?>"/> *
+                                    <input type="text" class="span11" name="txtAuthor"
+                                        value="<?php echo $anime_info['author']; ?>" /> *
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Studio</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" name="txtStudio" value="<?php echo $anime_info['studio']; ?>"/> *
+                                    <input type="text" class="span11" name="txtStudio"
+                                        value="<?php echo $anime_info['studio']; ?>" /> *
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Thumbnail</label>
                                 <div class="controls">
-                                    <input type="file" name="fileUpload" id="fileUpload">
+                                    <input type="file" name="inputthumbnail" id="fileUpload">
                                 </div>
                             </div>
                             <div class="control-group">
@@ -62,22 +73,30 @@ include "sidebar.php";
                                     category</label>
                                 <div class="controls">
                                     <select name="cate" id="cate" multiple="multiple">
-                                        
-                                        <option value="1" selected>The Gioi</option>
-                                        <option value="2">The Thao</option>
+                                        <?php
+                                        $getTagByAnimeID = $tag->getAllTag();
+                                        foreach ($getTagByAnimeID as $value):
+                                            ?>
+                                            <option <?php if ($tag->checkSelectedTag($_GET['id-anime'], $value['id_tag']) == true) {
+                                                echo "selected";
+                                            } ?> value=<?php echo $value['id_tag']; ?>><?php echo $value['name_tag']; ?>
+                                            </option>
+                                        <?php endforeach; ?>
                                     </select> *
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Description</label>
                                 <div class="controls">
-                                    <textarea style="height: 250px;" class="span11" name="content"><?php echo $anime_info['descrip']; ?></textarea>
+                                    <textarea style="height: 250px;" class="span11"
+                                        name="content"><?php echo $anime_info['descrip']; ?></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Chap</label>
                                 <div class="controls">
-                                    <input type="number" name="inputsotap" id="" value="<?php echo $anime_info['so_tap']; ?>">
+                                    <input type="number" name="inputsotap" id=""
+                                        value="<?php echo $anime_info['so_tap']; ?>">
                                 </div>
                             </div>
                             <div class="form-actions" style="text-align: right;">

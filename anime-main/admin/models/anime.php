@@ -9,6 +9,16 @@ class Anime extends Db
         $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $item;
     }
+    public function updateAnime($name,$author,$studio,$descrip,$thumbnail,$so_tap,$idanime)
+    {
+        $sql = self::$connection->prepare("UPDATE `anime` SET `name`=?,`author`=?,`studio`=?,`descrip`=?,`thumbnail`=?,`so_tap`=? WHERE `anime`.`id` = ?");
+        $sql->bind_param("ssssssi",$name,$author,$studio,$descrip,$thumbnail,$so_tap,$idanime);
+        
+        if($sql->execute()){
+            return true;
+        }
+        return false;
+    }
     public function getAnimeByID($idanime)
     {
         $sql = self::$connection->prepare("SELECT * FROM `anime` WHERE `id` = ?");
