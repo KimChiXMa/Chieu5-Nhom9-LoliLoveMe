@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -62,6 +66,7 @@
                     $getTag = $animetag->getTag($_GET['id']);
                     $tag = "đang cập nhật";
                     $count = 0;
+                    var_dump($idUserCurrent);
                     //tạo chuỗi tag chứa các tag của anime
                     foreach ($getTag as $key => $value) {
                         if ($count == 0) {
@@ -76,7 +81,7 @@
                     foreach ($getAllAnime as $key => $value):
                         if ($_GET['id'] == $value['id']):
                     ?>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <div class="anime__details__pic set-bg" data-setbg="<?php echo proceedUrl($value['thumbnail']); ?>">
                                 </div>
                             </div>
@@ -90,10 +95,10 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <ul>
-                                                    <li><span>Studios:</span> <?php echo $value['studio']; ?></li>
-                                                    <li><span>Tác giả :</span> <?php echo $value['author']; ?></li>
+                                                    <li><span>Studios:</span><?php echo $value['studio']; ?></li>
+                                                    <li><span>Tác giả:</span><?php echo $value['author']; ?></li>
                                                     <li><span>Thể loại:</span><?php echo $tag; ?></li>
-                                                    <li><span>Số tập:</span> <?php echo $value['so_tap']; ?></li>
+                                                    <li><span>Số tập:</span><?php echo $value['so_tap']; ?></li>
                                                 </ul>
                                             </div>
 

@@ -28,7 +28,9 @@ function proceedVideo($url){
     $newUrl = $idvid . "preview";
     return $newUrl;
 }
-
+if (isset($_SESSION["id_user_login"])) {
+    $idUserCurrent = $_SESSION["id_user_login"];
+}
 ?>
 <!-- Header Section Begin -->
 <header class="header">

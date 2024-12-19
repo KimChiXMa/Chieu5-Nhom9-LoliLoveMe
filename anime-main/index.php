@@ -34,9 +34,8 @@ session_start();
         <div class="loader"></div>
     </div>
 
-    <?php include "header.php";
-
-
+    <?php 
+    include "header.php";
     ?>
     <!-- Hero Section Begin -->
     <section class="hero">
