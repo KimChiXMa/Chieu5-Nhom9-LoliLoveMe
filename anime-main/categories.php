@@ -33,17 +33,19 @@
 
     <?php
     include 'header.php';
-    $idTag = $_GET['idtag'];
-    $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-    $getAnimeByTag = $anime->getAnimeByTag($idTag);
+    $idTag = isset($_GET['idtag']) ? $_GET['idtag'] : 1;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $count = 3;
     $sort = "recent add";
+
+    $getAnimeByTag = $anime->getAnimeByTagRecentAdd($idTag, $page, $count);
     if (isset($_GET['sort'])) {
         $sort = $_GET['sort'];
         if ($sort == "a-z") {
-            $getAnimeByTag = $anime->getAnimeByTagAZ($idTag);
+            $getAnimeByTag = $anime->getAnimeByTagAZ($idTag,$page,$count);
         } else if ($sort == "z-a") {
-            //$getAnimeByTag = $anime->getAnimeByTagZA($idTag);
+            $getAnimeByTag = $anime->getAnimeByTagZA($idTag,$page,$count);
         }
     }
 
