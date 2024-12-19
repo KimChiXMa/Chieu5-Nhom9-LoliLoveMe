@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 19, 2024 at 05:58 AM
+-- Host: localhost
+-- Generation Time: Dec 19, 2024 at 07:16 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -219,7 +219,8 @@ ALTER TABLE `tag`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`) USING HASH;
 
 --
 -- AUTO_INCREMENT for dumped tables
