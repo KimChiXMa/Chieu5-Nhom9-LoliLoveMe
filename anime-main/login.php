@@ -41,14 +41,10 @@ session_start();
 <?php include "header.php";
 $loginstat = "";
 if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'])) {
-    $username = $_POST['user_name_email_login'];
-    $password = $_POST['user_password_login'];
     $UserLogin = $user->UserLogin($_POST['user_name_email_login'],$_POST['user_password_login']);
     //var_dump($_POST['user_password_login']);
     if (count($UserLogin)>0) {
-        $_SESSION["username"] = $username;
-        $_SESSION["password"] = $password;
-        $_SESSION['UserLogin'] = $UserLogin;
+        $_SESSION["id_user_login"] = $UserLogin[0]['id'];
         $loginstat = "Successfully";
         header('location:index.php');
     }
