@@ -7,6 +7,7 @@ require "models/anime_tag.php";
 require "models/epi.php";
 require "models/users.php";
 require "models/tag.php";
+require "models/follow.php";
 
 
 $anime = new Anime;
@@ -14,6 +15,7 @@ $animetag = new AnimeTag;
 $epi = new Episode;
 $user = new User;
 $tag = new Tag;
+$follow = new Follow;
 
 //xử lý địa chỉ hình ảnh để nhúng vào web
 function proceedUrl($url)
