@@ -35,7 +35,7 @@ function proceedVideo($url){
 
 function proceedAvarta($url){
     if($url == null){
-        return proceedUrl("https://drive.google.com/file/d/1JKC_IJLcaTHdBByoOZ6-jQUr9b3LPmfb/view?usp=drive_link");
+        return "./img/simmicon.png";
     }else{
         return proceedUrl($url);
     }

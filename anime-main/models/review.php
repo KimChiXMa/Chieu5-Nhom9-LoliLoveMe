@@ -14,9 +14,16 @@ class Comment extends Db
 
     public function addReview($idUser,$idAnime,$review)
     {
-        $sql = self::$connection->prepare("INSERT INTO `comment`(`id_user`, `comment`, `id_anime`) VALUES ('?','?','?')");
-        $sql->bind_param('isi', $idUser, $review, $idAnime);
+        $sql = self::$connection->prepare("INSERT INTO `comment`(`id_user`, `comment`, `id_anime`) VALUES (?,?,?)");
+        $sql->bind_param("isi", $idUser, $review, $idAnime);
         $sql->execute();
     }
-    
+
+    // public function addReview($idUser, $idAnime, $commentText)
+    // {
+    //     $sql = self::$connection->prepare("INSERT INTO `comment`(`id_user`, `comment`, `id_anime`) VALUES (?, ?, ?)");
+    //     $sql->bind_param("isi", $idUser, $commentText, $idAnime); // Chú ý thứ tự và kiểu dữ liệu
+    //     $sql->execute();
+    // }
+
 }

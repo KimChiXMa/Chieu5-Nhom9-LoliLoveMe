@@ -88,8 +88,6 @@
             </div>
         </div>
 
-
-
         <?php else:
         foreach ($getAllAnime as $key => $value):
             if ($idAnime == $value['id']):
@@ -121,11 +119,7 @@
                                     <div class="iframe-container">
                                         <iframe id="ifrvideo" width="640" height="360" allow="autoplay" allowfullscreen="true"></iframe>
                                     </div>
-                                    <!-- <video id="player" playsinline controls data-poster="./videos/anime-watch.jpg">
-                             Captions are optional
-                            <iframe src="https://drive.google.com/file/d/1hZa9WK-60AbLgdaywf59ejB2IfHP7OFI/preview" width="640" height="360" allow="autoplay"></iframe>
-                            <track kind="captions" label="English captions" src="#" srclang="en" default />
-                        </video> -->
+
                                 </div>
                                 <div class="anime__details__episodes">
                                     <div class="section-title">
@@ -143,18 +137,58 @@
                                     endforeach;
                                     ?>
                                 </div>
+                    
                     <?php
-                endif;
+            endif;
             endforeach;
-        endif;
                     ?>
+                            </div>
+                        </div>
+
+
+                        <!-- review anime -->
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="anime__details__form">
+                                    <div class="section-title">
+                                        <h5>Your Comment</h5>
+                                    </div>
+                                    <form action="add-comment.php" method="POST">
+                                        <textarea name="comment" placeholder="Your Comment"></textarea>
+                                        <input type="hidden" name="id_anime" value="<?php echo $idAnime; ?>">
+                                        <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                                    </form>
+                                </div>
+                                <br>
+                                <div class="anime__details__review">
+                                    <div class="section-title">
+                                        <h5>Reviews</h5>
+                                    </div>
+                                    <?php
+                                    $listReviews = $comment->getAllReviewByIdAnime($idAnime);
+                                    foreach ($listReviews as $key => $value):
+                                    ?>
+                                        <div class="anime__review__item">
+                                            <div class="anime__review__item__pic">
+                                                <img src="<?php echo proceedAvarta($value["image"]); ?>" alt="">
+                                            </div>
+                                            <div class="anime__review__item__text">
+                                                <h6><?php echo $value["username"]; ?> - <span><?php echo $value["created_at"]; ?></span></h6>
+                                                <p><?php echo $value["comment"]; ?></p>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+
                             </div>
                         </div>
 
                     </div>
                 </section>
                 <!-- Anime Section End -->
-
+<?php 
+endif;
+?>
                 <!-- Footer Section Begin -->
                 <footer class="footer">
                     <div class="page-up">
