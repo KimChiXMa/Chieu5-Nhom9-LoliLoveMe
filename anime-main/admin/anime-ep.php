@@ -38,7 +38,6 @@ if (isset($_GET['txtAnime_name']) && isset($_GET['txtAuthor']) && isset($_GET['t
                         <!-- BEGIN FORM -->
                         <form action="<?php if (isset($_POST['txtAnime_name']) && isset($_POST['txtAuthor']) && isset($_POST['txtStudio']) && isset($_POST['content'])) {
     $anime->updateAnime($_POST['txtAnime_name'], $_POST['txtAuthor'], $_POST['txtStudio'], $_POST['content'], "ihentai.uk",$_POST['inputsotap'],$_GET['id-anime']);
-    echo $_SERVER['PHP_SELF']."?id-anime="."1";
 }?>" method="post" class="form-horizontal" enctype="multipart/form-data">
                             <div class="control-group">
                                 <label class="control-label">Name</label>
