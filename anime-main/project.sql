@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 19, 2024 at 07:16 AM
+-- Host: 127.0.0.1
+-- Generation Time: Dec 25, 2024 at 04:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -86,6 +86,34 @@ INSERT INTO `anime_tag` (`id_anime`, `id_tag`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id_comment` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `id_anime` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id_comment`, `id_user`, `comment`, `id_anime`, `created_at`) VALUES
+(1, 1, 'bộ này hay vãi mọi người ơi', 1, '2024-12-25 19:35:10'),
+(2, 0, '[value-3]', 0, '0000-00-00 00:00:00'),
+(3, 0, '[value-3]', 0, '2024-12-25 20:00:21'),
+(4, 2, 'aaa', 1, '2024-12-25 20:43:28'),
+(5, 2, 'aaa', 1, '2024-12-25 20:44:48'),
+(6, 2, 'xin chào mọi người', 1, '2024-12-25 20:46:21'),
+(7, 3, 'xin chào mọi người mình là simmicon số 1 thế giới', 1, '2024-12-25 21:17:16'),
+(8, 3, 'chào em', 11, '2024-12-25 21:40:52');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `episode`
 --
 
@@ -134,6 +162,14 @@ CREATE TABLE `follow` (
   `anime_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `follow`
+--
+
+INSERT INTO `follow` (`user_id`, `anime_id`) VALUES
+(2, 1),
+(2, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -170,16 +206,18 @@ CREATE TABLE `user` (
   `username` text NOT NULL,
   `pass` text NOT NULL,
   `displayname` text DEFAULT NULL,
-  `email` text DEFAULT NULL
+  `email` text DEFAULT NULL,
+  `image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `pass`, `displayname`, `email`) VALUES
-(1, 'hy123456', 'hy123456', 'hy123456', 'hy@gmail.com'),
-(2, 'aaa', 'aaa', 'aaa', 'aaa');
+INSERT INTO `user` (`id`, `username`, `pass`, `displayname`, `email`, `image`) VALUES
+(1, 'hy123456', 'hy123456', 'hy123456', 'hy@gmail.com', 'https://drive.google.com/file/d/176ObiSyAFfyWORaIfD7Z8epbbIPzdS1h/view?usp=drive_link'),
+(2, 'aaa', 'aaa', 'aaa', 'aaa', 'https://drive.google.com/file/d/1vMYYGLrUc_A9WyzUDY7wC8D_XQRynx3J/view?usp=drive_link'),
+(3, 'thienga', 'thienga', 'thienga', 'thienga', NULL);
 
 --
 -- Indexes for dumped tables
@@ -196,6 +234,12 @@ ALTER TABLE `anime`
 --
 ALTER TABLE `anime_tag`
   ADD PRIMARY KEY (`id_anime`,`id_tag`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id_comment`);
 
 --
 -- Indexes for table `episode`
@@ -219,8 +263,7 @@ ALTER TABLE `tag`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`) USING HASH;
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -233,6 +276,12 @@ ALTER TABLE `anime`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
@@ -242,7 +291,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

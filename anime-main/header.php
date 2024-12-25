@@ -25,16 +25,18 @@ function proceedUrl($url)
     return $newUrl;
 }
 //xử lý địa chỉ video để nhúng vào web
-function proceedVideo($url){
-    $idvid = substr($url,0, 66);
+function proceedVideo($url)
+{
+    $idvid = substr($url, 0, 66);
     $newUrl = $idvid . "preview";
     return $newUrl;
 }
 
-function proceedAvarta($url){
-    if($url == null){
+function proceedAvarta($url)
+{
+    if ($url == null) {
         return "./img/simmicon.png";
-    }else{
+    } else {
         return proceedUrl($url);
     }
 }
@@ -61,11 +63,11 @@ if (isset($_SESSION["id_user_login"])) {
                             <li class="active"><a href="./index.php">Homepage</a></li>
                             <li><a href="./categories.php">Categories <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
-                                    <?php 
+                                    <?php
                                     $listTag = $tag->getAllTag();
-                                    foreach($listTag as $key => $valuetag): ?>
-                                    <li><a href="./categories.php?idtag=<?php echo $valuetag['id_tag']; ?>"><?php echo $valuetag['name_tag']; ?></a></li>
-                                    <?php endforeach;?>
+                                    foreach ($listTag as $key => $valuetag): ?>
+                                        <li><a href="./categories.php?idtag=<?php echo $valuetag['id_tag']; ?>"><?php echo $valuetag['name_tag']; ?></a></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </li>
 
@@ -85,3 +87,15 @@ if (isset($_SESSION["id_user_login"])) {
     </div>
 </header>
 <!-- Header End -->
+<script>
+    document.addEventListener('click', function(event) {
+        var profileDropdown = document.querySelector('.profile-dropdown');
+        var dropdownContent = document.querySelector('.dropdown-content');
+
+        if (profileDropdown.contains(event.target)) {
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        } else {
+            dropdownContent.style.display = 'none';
+        }
+    });
+</script>
