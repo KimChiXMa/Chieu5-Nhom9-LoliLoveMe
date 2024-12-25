@@ -43,9 +43,9 @@
     if (isset($_GET['sort'])) {
         $sort = $_GET['sort'];
         if ($sort == "a-z") {
-            $getAnimeByTag = $anime->getSearchAnimeByTagAZ($result, $page,$count);
+            $getAnimeByTag = $anime->getSearchAnimeByTagAZ($result, $page, $count);
         } else if ($sort == "z-a") {
-            $getAnimeByTag = $anime->getSearchAnimeByTagZA($result, $page,$count);
+            $getAnimeByTag = $anime->getSearchAnimeByTagZA($result, $page, $count);
         }
     }
 
@@ -115,7 +115,7 @@
                                                     <li><?php echo $valueAnimeTag['name_tag']; ?></li>
                                                 <?php endforeach; ?>
                                             </ul>
-                                            <h5><a href="#"><?php echo $valueAnime['name']; ?></a></h5>
+                                            <h5><a href="anime-details.php?id=<?php echo $valueAnime['id']; ?>"><?php echo $valueAnime['name']; ?></a></h5>
                                         </div>
                                     </div>
                                 </div>

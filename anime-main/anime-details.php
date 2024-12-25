@@ -47,7 +47,6 @@ session_start();
                     <div class="breadcrumb__links">
                         <a href="./index.php"><i class="fa fa-home"></i> Home</a>
                         <a href="./categories.php">Categories</a>
-                        <span>Romance</span>
                     </div>
                 </div>
             </div>
@@ -128,6 +127,37 @@ session_start();
                     <?php endif;
                     endforeach; ?>
                 </div>
+                <!-- review anime -->
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="anime__details__review">
+                            <div class="section-title">
+                                <h5>Reviews</h5>
+                            </div>
+                            <?php
+                            $listReviews = $comment->getAllReviewByIdAnime($idAnime);
+                            foreach ($listReviews as $key => $value):
+                            ?>
+                                <div class="anime__review__item">
+                                    <div class="anime__review__item__pic">
+                                        <img src="<?php echo proceedAvarta($value["image"]); ?>" alt="">
+                                    </div>
+                                    <div class="anime__review__item__text">
+                                        <h6><?php echo$value["username"]; ?> - <span><?php echo $value["created_at"]; ?></span></h6>
+                                        <p><?php echo $value["comment"]; ?></p>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="anime__details__form">
+                            <div class="section-title">
+                                <h5>Your Comment</h5>
+                            </div>
+                            <form id="commentForm"> <textarea name="comment" placeholder="Your Comment"></textarea> <button type="submit"><i class="fa fa-location-arrow"></i> Review</button> </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -193,6 +223,31 @@ session_start();
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#commentForm').on('submit', function(e) {
+                e.preventDefault(); // Ngăn chặn hành động mặc định của biểu mẫu
+                var comment = $('textarea[name="comment"]').val();
+                var idAnime = <?php echo json_encode($idAnime); ?>;
+
+                $.ajax({
+                    url: 'handle_comment.php',
+                    method: 'POST',
+                    data: {
+                        comment: comment,
+                        id_anime: idAnime
+                    },
+                    success: function(response) {
+                        // Xử lý phản hồi từ máy chủ và cập nhật giao diện người dùng
+                        $('.anime__details__review').append(response);
+                        $('textarea[name="comment"]').val(''); // Xóa nội dung của textarea sau khi gửi
+                    }
+                });
+            });
+        });
+    </script>
+
 
 </body>
 

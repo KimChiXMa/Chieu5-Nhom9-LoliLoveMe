@@ -115,7 +115,7 @@
                                                     <li><?php echo $valueAnimeTag['name_tag']; ?></li>
                                                 <?php endforeach; ?>
                                             </ul>
-                                            <h5><a href="#"><?php echo $valueAnime['name']; ?></a></h5>
+                                            <h5><a href="anime-details.php?id=<?php echo $valueAnime['id']; ?>"><?php echo $valueAnime['name']; ?></a></h5>
                                         </div>
                                     </div>
                                 </div>
