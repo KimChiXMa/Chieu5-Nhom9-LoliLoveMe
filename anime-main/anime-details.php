@@ -111,10 +111,13 @@ session_start();
                                         </div>
                                     </div>
                                     <div class="anime__details__btn">
-                                        <?php if ($idUserCurrent == 0 || $follow->getFollow($idUserCurrent, $idAnime) == false): ?>
-                                            <a href="follow_anime.php?id=<?php echo $idAnime;?>&type=follow" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
+                                        <?php var_dump(
+                                            $follow->getFollow($idUserCurrent, $idAnime)
+                                        );
+                                        if ($idUserCurrent == 0 || $follow->getFollow($idUserCurrent, $idAnime) == false): ?>
+                                            <a href="follow_anime.php?id=<?php echo $idAnime; ?>&type=follow" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
                                         <?php else: ?>
-                                            <a a href="follow_anime.php?id=<?php echo $idAnime;?>&type=unfollow" class="follow-btn"><i class="fa fa-heart"></i> Follow</a>
+                                            <a a href="follow_anime.php?id=<?php echo $idAnime; ?>&type=unfollow" class="follow-btn"><i class="fa fa-heart"></i>Unfollow</a>
                                         <?php endif; ?>
                                         <a href="anime-watching.php?id=<?php echo $_GET['id'] . "&episode=1"; ?>" class="watch-btn"><span>Watch Now</span> <i
                                                 class="fa fa-angle-right"></i></a>

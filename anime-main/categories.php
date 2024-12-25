@@ -43,9 +43,9 @@
     if (isset($_GET['sort'])) {
         $sort = $_GET['sort'];
         if ($sort == "a-z") {
-            $getAnimeByTag = $anime->getAnimeByTagAZ($idTag,$page,$count);
+            $getAnimeByTag = $anime->getAnimeByTagAZ($idTag, $page, $count);
         } else if ($sort == "z-a") {
-            $getAnimeByTag = $anime->getAnimeByTagZA($idTag,$page,$count);
+            $getAnimeByTag = $anime->getAnimeByTagZA($idTag, $page, $count);
         }
     }
 
@@ -124,22 +124,23 @@
                         </div>
                     </div>
                     <div class="product__pagination">
-                      <?php
-                            //   if (isset($_GET['idtag'])):
+                        <?php
+                        //   if (isset($_GET['idtag'])):
 
-                            // hiển thị 2 sản phẩm trên 1 trang
-                            //$sort = $_GET['sort'];
+                        // hiển thị 2 sản phẩm trên 1 trang
+                        //$sort = $_GET['sort'];
 
                         $count = 3;
                         // Lấy số trang trên thanh địa chỉ
                         // Tính tổng số anime theo thể loại, ví dụ kết quả là 18
                         $total = count($anime->getAnimeByTag($idTag));
                         // lấy đường dẫn đến file hiện hành
-                        $url = $_SERVER['PHP_SELF'] . "?idtag=" . $idTag. "&sort=".$sort;
-                        echo $anime->paginateCate($url,$total,$count); ?>
+                        $url = $_SERVER['PHP_SELF'] . "?idtag=" . $idTag . "&sort=" . $sort;
+                        echo $anime->paginateCate($url, $total, $count); ?>
 
                         <!-- <a href="#"><i class="fa fa-angle-double-right"></i></a> -->
-                        <?php //endif; ?>
+                        <?php //endif; 
+                        ?>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">
@@ -292,8 +293,8 @@
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
+            <form class="search-model-form" action="result.php" method="get">
+                <input name="search" type="text" id="search-input" placeholder="Search here.....">
             </form>
         </div>
     </div>

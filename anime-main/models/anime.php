@@ -64,6 +64,8 @@ class Anime extends Db
         return $link;
     }
 
+
+    
     //xử lý địa chỉ hình ảnh để nhúng vào web
     function proceedImg($url)
     {
@@ -128,7 +130,7 @@ class Anime extends Db
         WHERE anime_tag.id_tag = ? AND anime.id = anime_tag.id_anime AND tag.id_tag = anime_tag.id_tag 
         ORDER BY anime.name DESC
         LIMIT ?,? ;");
-        $sql->bind_param("iii", $idTag,$start,$count);
+        $sql->bind_param("iii", $idTag, $start, $count);
         $sql->execute();
         $animes = array();
         $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -150,8 +152,8 @@ class Anime extends Db
     {
         $sql = self::$connection->prepare("SELECT * FROM `anime` ORDER BY `id` DESC  LIMIT ?;");
         $sql->bind_param("i", $id);
-        $sql->execute();//thuc thi 
-        $items = array();//tra ve du lieu
+        $sql->execute(); //thuc thi 
+        $items = array(); //tra ve du lieu
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
     }
@@ -164,12 +166,63 @@ class Anime extends Db
         }
         return $link;
     }
+    //lấy anime theo tag
+    public function getAnimeBySearch($key)
+    {
+        $key = "%$key%";
+        $sql = self::$connection->prepare("SELECT *
+                                        FROM anime
+                                        WHERE anime.name LIKE ?;");
+        $sql->bind_param("s", $key);
+        $sql->execute();
+        $animes = array();
+        $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $animes;
+    }
+    public function getSearchAnimeByTagRecentAdd($key, $page, $count)
+    {
+        $start = ($page - 1) * $count;
+        $key = "%$key%";
+        $sql = self::$connection->prepare("SELECT *
+                                        FROM anime
+                                        WHERE anime.name LIKE ?
+                                        ORDER BY anime.id
+                                        LIMIT ?,?;");
+        $sql->bind_param("sii", $key, $start, $count);
+        $sql->execute();
+        $animes = array();
+        $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $animes;
+    }
+    public function getSearchAnimeByTagAZ($key, $page, $count)
+    {
+        $start = ($page - 1) * $count;
+        $key = "%$key%";
+        $sql = self::$connection->prepare("SELECT *
+        FROM anime
+        WHERE anime.name LIKE ?
+        ORDER BY anime.name ASC
+        LIMIT ?,? ;");
+        $sql->bind_param("sii", $key, $start, $count);
+        $sql->execute();
+        $animes = array();
+        $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $animes;
+    }
 
+    public function getSearchAnimeByTagZA($key, $page, $count)
+    {
+        $start = ($page - 1) * $count;
+        $key = "%$key%";
+        $sql = self::$connection->prepare("SELECT *
+        FROM anime
+        WHERE anime.name LIKE ?
+        ORDER BY anime.name DESC
+        LIMIT ?,? ;");
+        $sql->bind_param("sii", $key, $start, $count);
+        $sql->execute();
+        $animes = array();
+        $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $animes;
+    }
 }
-
-
-
-
-
-
-

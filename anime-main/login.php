@@ -38,25 +38,23 @@ session_start();
         <div class="loader"></div>
     </div>
 
-<?php include "header.php";
-$loginstat = "";
-if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'])) {
-    $UserLogin = $user->UserLogin($_POST['user_name_email_login'],$_POST['user_password_login']);
-    //var_dump($_POST['user_password_login']);
-    if (count($UserLogin)>0) {
-        $_SESSION["id_user_login"] = $UserLogin[0]['id'];
-        $loginstat = "Successfully";
-        header('location:index.php');
+    <?php include "header.php";
+    $loginstat = "";
+    if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'])) {
+        $UserLogin = $user->UserLogin($_POST['user_name_email_login'], $_POST['user_password_login']);
+        //var_dump($_POST['user_password_login']);
+        if (count($UserLogin) > 0) {
+            $_SESSION["id_user_login"] = $UserLogin[0]['id'];
+            $loginstat = "Successfully";
+            header('location:index.php');
+        } else {
+            // header('location:login.php');
+            unset($_SESSION['username']);
+            unset($_SESSION['password']);
+            $loginstat = "Failed";
+        }
     }
-    else
-    {
-        // header('location:login.php');
-        unset($_SESSION['username']);
-        unset($_SESSION['password']);
-        $loginstat = "Failed";
-    }
-}
-?>
+    ?>
 
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
@@ -91,12 +89,13 @@ if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'
                             </div>
                             <div></div>
                             <?php
-                            if($loginstat == "Failed"){
-                                echo "<div style='color:Tomato;'>"."Username or password incorrect"."</div>";}
+                            if ($loginstat == "Failed") {
+                                echo "<div style='color:Tomato;'>" . "Username or password incorrect" . "</div>";
+                            }
                             ?>
                             <button type="submit" class="site-btn">Login Now</button>
                         </form>
-                        
+
                         <a href="" class="forget_pass">Forgot Your Password?</a>
                     </div>
                 </div>
@@ -169,8 +168,8 @@ if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
+            <form class="search-model-form" action="result.php" method="get">
+                <input name="search" type="text" id="search-input" placeholder="Search here.....">
             </form>
         </div>
     </div>
