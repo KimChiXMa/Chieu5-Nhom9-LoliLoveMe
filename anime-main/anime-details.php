@@ -130,6 +130,17 @@ session_start();
                 <!-- review anime -->
                 <div class="row">
                     <div class="col-lg-8">
+                        <div class="anime__details__form">
+                            <div class="section-title">
+                                <h5>Your Comment</h5>
+                            </div>
+                            <form action="add-comment.php" method="POST">
+                                <textarea name="comment" placeholder="Your Comment"></textarea>
+                                <input type="hidden" name="id_anime" value="<?php echo $idAnime; ?>">
+                                <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                            </form>
+                        </div>
+                        <br>
                         <div class="anime__details__review">
                             <div class="section-title">
                                 <h5>Reviews</h5>
@@ -143,18 +154,13 @@ session_start();
                                         <img src="<?php echo proceedAvarta($value["image"]); ?>" alt="">
                                     </div>
                                     <div class="anime__review__item__text">
-                                        <h6><?php echo$value["username"]; ?> - <span><?php echo $value["created_at"]; ?></span></h6>
+                                        <h6><?php echo $value["username"]; ?> - <span><?php echo $value["created_at"]; ?></span></h6>
                                         <p><?php echo $value["comment"]; ?></p>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        <div class="anime__details__form">
-                            <div class="section-title">
-                                <h5>Your Comment</h5>
-                            </div>
-                            <form id="commentForm"> <textarea name="comment" placeholder="Your Comment"></textarea> <button type="submit"><i class="fa fa-location-arrow"></i> Review</button> </form>
-                        </div>
+
                     </div>
                 </div>
 

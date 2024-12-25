@@ -55,7 +55,7 @@ session_start();
                                     <p>
                                     <p><?php echo substr($value['descrip'], 0, 50); ?></p>
                                     </p>
-                                    <a href="anime-watching.php"><span>Watch Now</span> <i
+                                    <a href="anime-watching.php?id=<?php echo $value["id"];?>"><span>Watch Now</span> <i
                                             class="fa fa-angle-right"></i></a>
                                 </div>
                         </div>
@@ -215,7 +215,7 @@ echo paginate('index.php', $total, $limit);
     <script>
         function goToAnimeDetail(animeSlug) {
             // Sử dụng tham số truyền vào
-            window.location.href = 'anime-details.php?anime=' + animeSlug;
+            window.location.href = 'anime-details.php?id=' + animeSlug;
             //window.location.href = 'anime-details.php'
         }
         /*document.getElementById('move_detail').addEventListener('click', function () {

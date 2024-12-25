@@ -30,6 +30,15 @@ function proceedVideo($url){
     $newUrl = $idvid . "preview";
     return $newUrl;
 }
+
+function proceedAvarta($url){
+    if($url == null){
+        return "./img/simmicon.png";
+    }else{
+        return proceedUrl($url);
+    }
+}
+
 if (isset($_SESSION["id_user_login"])) {
     $idUserCurrent = $_SESSION["id_user_login"];
 }
