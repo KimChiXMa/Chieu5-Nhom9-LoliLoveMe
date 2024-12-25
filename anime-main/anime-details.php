@@ -62,6 +62,11 @@ session_start();
                 <div class="row">
 
                     <?php
+                    if (isset($_SESSION["id_user_login"])) {
+                        $idUserCurrent = $_SESSION["id_user_login"];
+                    } else {
+                        $idUserCurrent = 0;
+                    }
                     $getAllAnime = $anime->getAllAnimes();
                     $getTag = $animetag->getTag($_GET['id']);
                     $tag = "đang cập nhật";
@@ -105,6 +110,7 @@ session_start();
                                         </div>
                                     </div>
                                     <div class="anime__details__btn">
+                                        <?php if($idUserCurrent == 0 || ) ?>
                                         <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
                                         <a href="anime-watching.php?id=<?php echo $_GET['id'] . "&episode=1"; ?>" class="watch-btn"><span>Watch Now</span> <i
                                                 class="fa fa-angle-right"></i></a>
