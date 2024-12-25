@@ -127,8 +127,6 @@ session_start();
 
                     <?php endif;
                     endforeach; ?>
-
-
                 </div>
             </div>
 
