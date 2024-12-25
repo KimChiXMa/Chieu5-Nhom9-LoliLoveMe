@@ -157,15 +157,6 @@ class Anime extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
     }
-    function paginateAnime($url, $total, $count)
-    {
-        $totalLinks = ceil($total / $count);
-        $link = "";
-        for ($j = 1; $j <= $totalLinks; $j++) {
-            $link = $link . "<a class='btn btn-sm btn-outline-secondary m-1' href='$url&page=$j'> $j </a>";
-        }
-        return $link;
-    }
     //lấy anime theo tag
     public function getAnimeBySearch($key)
     {
@@ -224,5 +215,14 @@ class Anime extends Db
         $animes = array();
         $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $animes;
+    }
+    function paginateAnime($url, $total, $count)
+    {
+        $totalLinks = ceil($total / $count);
+        $link = "";
+        for ($j = 1; $j <= $totalLinks; $j++) {
+            $link = $link . "<a class='btn btn-sm btn-outline-secondary m-1' href='$url&page=$j'> $j </a>";
+        }
+        return $link;
     }
 }

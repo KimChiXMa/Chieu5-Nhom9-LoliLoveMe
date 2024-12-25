@@ -8,7 +8,6 @@ require "models/epi.php";
 require "models/users.php";
 require "models/tag.php";
 require "models/follow.php";
-require "models/review.php";
 
 
 $anime = new Anime;
@@ -17,7 +16,6 @@ $epi = new Episode;
 $user = new User;
 $tag = new Tag;
 $follow = new Follow;
-$comment = new Comment;
 
 //xử lý địa chỉ hình ảnh để nhúng vào web
 function proceedUrl($url)
@@ -32,15 +30,6 @@ function proceedVideo($url){
     $newUrl = $idvid . "preview";
     return $newUrl;
 }
-
-function proceedAvarta($url){
-    if($url == null){
-        return proceedUrl("https://drive.google.com/file/d/1JKC_IJLcaTHdBByoOZ6-jQUr9b3LPmfb/view?usp=drive_link");
-    }else{
-        return proceedUrl($url);
-    }
-}
-
 if (isset($_SESSION["id_user_login"])) {
     $idUserCurrent = $_SESSION["id_user_login"];
 }
