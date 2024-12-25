@@ -62,6 +62,7 @@ if (isset($_SESSION["id_user_login"])) {
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
+
                             <li class="active"><a href="./index.php">Homepage</a></li>
                             <li><a href="./categories.php">Categories <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
@@ -79,10 +80,23 @@ if (isset($_SESSION["id_user_login"])) {
                 </div>
             </div>
             <div class="col-lg-2">
-                <div class="header__right">
-                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="./login.php"><span class="icon_profile"></span></a>
-                </div>
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li><a href="#" class="search-switch"><span class="icon_search"></span></a></li>
+
+                        <li><a href="./categories.php"> <span class="icon_profile"></span></a>
+                            <ul class="dropdown">
+                                <?php if ( isset($_SESSION["id_user_login"]) && $_SESSION["id_user_login"] != 0): ?>
+                                    <li><a href="follow-list.php">Theo dõi</a></li>
+                                    <li><a href="logout.php">Đăng xuất</a></li>
+                                <?php else: ?>
+                                    <li><a href="login.php">Đăng nhặp</a></li>
+                                <?php endif; ?>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
             </div>
         </div>
         <div id="mobile-menu-wrap"></div>

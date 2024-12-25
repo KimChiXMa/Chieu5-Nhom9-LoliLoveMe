@@ -40,14 +40,14 @@ session_start(); ?>
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $count = 3;
     $sort = "recent add";
-
-    $getAnimeByTag = $anime->getAnimeByTagRecentAdd($idTag, $page, $count);
+    $result = $_GET["search"];
+    $getAnimeByTag = $anime->getFollowAnimeByTagRecentAdd($idUserCurrent, $page, $count);
     if (isset($_GET['sort'])) {
         $sort = $_GET['sort'];
         if ($sort == "a-z") {
-            $getAnimeByTag = $anime->getAnimeByTagAZ($idTag, $page, $count);
+            $getAnimeByTag = $anime->getFollowAnimeByTagAZ($idUserCurrent, $page, $count);
         } else if ($sort == "z-a") {
-            $getAnimeByTag = $anime->getAnimeByTagZA($idTag, $page, $count);
+            $getAnimeByTag = $anime->getFollowAnimeByTagZA($idUserCurrent, $page, $count);
         }
     }
 
@@ -84,7 +84,7 @@ session_start(); ?>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-6">
                                     <div class="section-title">
-                                        <h4><?php echo $getTagName; ?></h4>
+                                        <h4>Danh sách theo dõi : </h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-6">
@@ -135,9 +135,9 @@ session_start(); ?>
                         $count = 3;
                         // Lấy số trang trên thanh địa chỉ
                         // Tính tổng số anime theo thể loại, ví dụ kết quả là 18
-                        $total = count($anime->getAnimeByTag($idTag));
+                        $total = count($anime->getAnimeBySearch($result));
                         // lấy đường dẫn đến file hiện hành
-                        $url = $_SERVER['PHP_SELF'] . "?idtag=" . $idTag . "&sort=" . $sort;
+                        $url = $_SERVER['PHP_SELF'] . "?sort=" . $sort;
                         echo $anime->paginateCate($url, $total, $count); ?>
 
                         <!-- <a href="#"><i class="fa fa-angle-double-right"></i></a> -->
@@ -147,8 +147,6 @@ session_start(); ?>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">
                     <div class="product__sidebar">
-
-
                         <div class="product__sidebar__comment">
                             <div class="section-title">
                                 <h5>New Comment</h5>
@@ -272,8 +270,8 @@ session_start(); ?>
         function handleSelectChange() {
             const selectElement = document.getElementById('sortSelect');
             const typeSort = selectElement.value;
-            const url = "<?php echo $_SERVER['PHP_SELF'] . "?idtag=" . $idTag; ?>"
-            const newUrl = `${url}&sort=${typeSort}`;
+            const url = "<?php echo $_SERVER['PHP_SELF']?>"
+            const newUrl = `${url}?sort=${typeSort}`;
             window.location.href = newUrl;
         }
     </script>

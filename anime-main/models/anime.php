@@ -65,7 +65,7 @@ class Anime extends Db
     }
 
 
-    
+
     //xử lý địa chỉ hình ảnh để nhúng vào web
     function proceedImg($url)
     {
@@ -224,5 +224,43 @@ class Anime extends Db
             $link = $link . "<a class='btn btn-sm btn-outline-secondary m-1' href='$url&page=$j'> $j </a>";
         }
         return $link;
+    }
+
+    public function getFollowAnimeByTagRecentAdd($idUser, $page, $count)
+    {
+        $start = ($page - 1) * $count;
+        $sql = self::$connection->prepare("SELECT *,anime.* FROM `follow`,anime WHERE follow.user_id = ? AND follow.anime_id = anime.id
+                                        ORDER BY anime.id
+                                        LIMIT ?,?;");
+        $sql->bind_param("iii", $idUser, $start, $count);
+        $sql->execute();
+        $animes = array();
+        $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $animes;
+    }
+    public function getFollowAnimeByTagAZ($idUser, $page, $count)
+    {
+        $start = ($page - 1) * $count;
+        $sql = self::$connection->prepare("SELECT *,anime.* FROM `follow`,anime WHERE follow.user_id = ? AND follow.anime_id = anime.id
+        ORDER BY anime.name ASC
+        LIMIT ?,? ;");
+        $sql->bind_param("sii", $idUser, $start, $count);
+        $sql->execute();
+        $animes = array();
+        $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $animes;
+    }
+
+    public function getFollowAnimeByTagZA($idUser, $page, $count)
+    {
+        $start = ($page - 1) * $count;
+        $sql = self::$connection->prepare("SELECT *,anime.* FROM `follow`,anime WHERE follow.user_id = ? AND follow.anime_id = anime.id
+        ORDER BY anime.name DESC
+        LIMIT ?,? ;");
+        $sql->bind_param("iii", $idUser, $start, $count);
+        $sql->execute();
+        $animes = array();
+        $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $animes;
     }
 }

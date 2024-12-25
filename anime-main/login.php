@@ -91,6 +91,8 @@ session_start();
                             <?php
                             if ($loginstat == "Failed") {
                                 echo "<div style='color:Tomato;'>" . "Username or password incorrect" . "</div>";
+                            }else{
+                                header("Location:index.php");
                             }
                             ?>
                             <button type="submit" class="site-btn">Login Now</button>
