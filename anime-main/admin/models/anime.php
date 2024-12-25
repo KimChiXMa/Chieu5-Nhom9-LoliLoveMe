@@ -19,6 +19,25 @@ class Anime extends Db
         }
         return false;
     }
+    public function deleteEpAnime($idanime,$tentap)
+    {
+        $sql = self::$connection->prepare("DELETE FROM `episode` WHERE `id_anime` = ? AND `tentap` = ?");
+        $sql->bind_param("ii",$idanime,$tentap);
+        if($sql->execute()){
+            return true;
+        }
+        return false;
+    }
+    public function addEpAnime($idanime,$tentap,$link)
+    {
+        $sql = self::$connection->prepare("INSERT INTO `episode`(`id_anime`, `tentap`, `id`) VALUES (?,?,?)");
+        $sql->bind_param("iis",$idanime,$tentap,$link);
+        
+        if($sql->execute()){
+            return true;
+        }
+        return false;
+    }
     public function getAnimeByID($idanime)
     {
         $sql = self::$connection->prepare("SELECT * FROM `anime` WHERE `id` = ?");
@@ -61,7 +80,12 @@ class Anime extends Db
         return $items;
     }
 
-
+    public function updateEpAnime($id_anime,$tentap,$link)
+    {
+        $sql = self::$connection->prepare("UPDATE `episode` SET `id`= ? WHERE `id_anime`= ? AND `tentap` = ?");
+        $sql->bind_param("sii",$link,$id_anime,$tentap);
+        $sql->execute();
+    }
 
     function paginate($url, $total, $count)
     {

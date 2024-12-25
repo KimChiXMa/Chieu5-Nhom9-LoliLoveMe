@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 25, 2024 at 04:44 PM
+-- Host: localhost
+-- Generation Time: Dec 25, 2024 at 07:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -193,7 +193,8 @@ INSERT INTO `tag` (`name_tag`, `id_tag`) VALUES
 ('comedy', 5),
 ('Fantasy', 6),
 ('Historical', 7),
-('Action', 8);
+('Action', 8),
+('gai xink lon mup', 10);
 
 -- --------------------------------------------------------
 
@@ -207,17 +208,19 @@ CREATE TABLE `user` (
   `pass` text NOT NULL,
   `displayname` text DEFAULT NULL,
   `email` text DEFAULT NULL,
-  `image` text DEFAULT NULL
+  `image` text DEFAULT NULL,
+  `role` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `pass`, `displayname`, `email`, `image`) VALUES
-(1, 'hy123456', 'hy123456', 'hy123456', 'hy@gmail.com', 'https://drive.google.com/file/d/176ObiSyAFfyWORaIfD7Z8epbbIPzdS1h/view?usp=drive_link'),
-(2, 'aaa', 'aaa', 'aaa', 'aaa', 'https://drive.google.com/file/d/1vMYYGLrUc_A9WyzUDY7wC8D_XQRynx3J/view?usp=drive_link'),
-(3, 'thienga', 'thienga', 'thienga', 'thienga', NULL);
+INSERT INTO `user` (`id`, `username`, `pass`, `displayname`, `email`, `image`, `role`) VALUES
+(1, 'hy123456', 'hy123456', 'hy123456', 'hy@gmail.com', 'https://drive.google.com/file/d/176ObiSyAFfyWORaIfD7Z8epbbIPzdS1h/view?usp=drive_link', 0),
+(2, 'aaa', 'aaa', 'aaa', 'aaa', 'https://drive.google.com/file/d/1vMYYGLrUc_A9WyzUDY7wC8D_XQRynx3J/view?usp=drive_link', 0),
+(3, 'thienga', 'thienga', 'thienga', 'thienga', NULL, 0),
+(4, 'kimchi', 'kimchi', 'kimchi', 'kimchi@ma.sex', 'huhu', 1);
 
 --
 -- Indexes for dumped tables
@@ -285,13 +288,13 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

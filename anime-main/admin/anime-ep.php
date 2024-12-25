@@ -7,9 +7,14 @@ if (!isset($_GET['id-anime'])) {
 include "header.php";
 include "sidebar.php";
 $huhu = 0;
-if (isset($_GET['txtAnime_name']) && isset($_GET['txtAuthor']) && isset($_GET['txtStudio']) && isset($_GET['content'])) {
-    $anime->updateAnime($_GET['txtAnime_name'], $_GET['txtAuthor'], $_GET['txtStudio'], $_GET['content'], "ihentai.uk", $_GET['inputsotap'], $_GET['id-anime']);
-}
+
+    if (isset($_POST['txtAnime_name']) && isset($_POST['txtAuthor']) && isset($_POST['txtStudio']) && isset($_POST['content'])) {
+        $anime->updateAnime($_POST['txtAnime_name'], $_POST['txtAuthor'], $_POST['txtStudio'], $_POST['content'], "ihentai.uk", $_POST['inputsotap'], $_POST['id-anime']);
+    }
+
+
+// Thêm đoạn này để reload trang sau khi submit
+
 ?>
 <!-- BEGIN CONTENT -->
 <div id="content">
@@ -30,15 +35,13 @@ if (isset($_GET['txtAnime_name']) && isset($_GET['txtAuthor']) && isset($_GET['t
                 <div class="widget-box">
                     <div class="widget-title">
                         <span class="toggle-icon icon" style="cursor: pointer;">
-                            <i class="icon-chevron-down"></i>
+                            <i class="icon-chevron-down iconanimeinfo"></i>
                         </span>
                         <h5>Anime info</h5>
                     </div>
                     <div class="widget-content nopadding vieweditanime">
                         <!-- BEGIN FORM -->
-                        <form action="<?php if (isset($_POST['txtAnime_name']) && isset($_POST['txtAuthor']) && isset($_POST['txtStudio']) && isset($_POST['content'])) {
-    $anime->updateAnime($_POST['txtAnime_name'], $_POST['txtAuthor'], $_POST['txtStudio'], $_POST['content'], "ihentai.uk",$_POST['inputsotap'],$_GET['id-anime']);
-}?>" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action=<?php echo "jump.php?id-anime=".$anime_info['id']."&select=1" ?> method="post" class="form-horizontal" enctype="multipart/form-data">
                             <div class="control-group">
                                 <label class="control-label">Name</label>
                                 <div class="controls">
@@ -64,14 +67,14 @@ if (isset($_GET['txtAnime_name']) && isset($_GET['txtAuthor']) && isset($_GET['t
                             <div class="control-group">
                                 <label class="control-label">Thumbnail</label>
                                 <div class="controls">
-                                    <input type="file" name="inputthumbnail" id="fileUpload">
+                                    <input class="span11" type="text" name="inputthumbnail" value="<?php echo $anime_info['thumbnail'] ?>">
+                                    <a href="https://drive.google.com/drive/folders/1qW-YpAgWAfG7e2rYVXjMet5AxuFqcWbZ" target="_blank" class="btn">GG Drive</a>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Choose a
-                                    category</label>
+                                <label class="control-label">Category</label>
                                 <div class="controls">
-                                    <select name="cate" id="cate" multiple="multiple">
+                                    <select name="cate[]" id="cate" multiple="multiple">
                                         <?php
                                         $getTagByAnimeID = $tag->getAllTag();
                                         foreach ($getTagByAnimeID as $value):
@@ -113,7 +116,7 @@ if (isset($_GET['txtAnime_name']) && isset($_GET['txtAuthor']) && isset($_GET['t
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
-                    <div class="widget-title"> <span class="icon"><a href="form.html"> <i class="icon-plus"></i>
+                    <div class="widget-title"> <span class="icon"><a href="form-add-ep-anime.php?id-anime=<?php echo $anime_info['id'] ?>"> <i class="icon-plus"></i>
                             </a></span>
                         <h5>Anime</h5>
                     </div>
@@ -137,18 +140,23 @@ if (isset($_GET['txtAnime_name']) && isset($_GET['txtAuthor']) && isset($_GET['t
                                         ?>
 
                                         <tr class="">
+                                        <form action="jump.php?select=2" method="post">
                                             <td style="text-align: center;"><?php echo $value['tentap'] ?></td>
-                                            <td onclick="copyLink('<?php echo $value['id']; ?>',this)"
-                                                style="text-align: center;"><?php echo $value['id'] ?></td>
-                                            <td style="text-align: center; width: 150px;"><a href="<?php echo $value['id']; ?>"
-                                                    target="_blank"><button class="btn btn-success">Open</button></a>
+                                            <td ondblclick=""
+                                                style="text-align: center;"><input style="width: 100%;" type="text" name="input_link_ep" id="" value="<?php echo $value['id'] ?>"></td>
+                                            <td style="text-align: center; width: 150px;"><a class="btn btn-success" href="<?php echo $value['id']; ?>"
+                                                    target="_blank">Open</a>
                                             </td>
                                             <td style="text-align: center; width: 150px;">
-                                                <a href="#45" class="btn btn-success">Edit</a>
+                                                <!-- <form action="jump.php?select=2" method="post"> -->
+                                                <!-- <a href="#45" class="btn btn-success">Edit</a> -->
+                                                 <button class="btn btn-success" name="btneditlink" value="<?php echo $value['id_anime']."???KimChi???".$value['tentap'] ?>" type="submit">Edit</button>
+                                                <!-- </form> -->
                                             </td>
                                             <td style="text-align: center; width: 150px;">
-                                                <a href="#45" class="btn btn-danger">Delete</a>
+                                                <a href=<?php echo "jump.php?select=3&idanime=".$value['id_anime']."&tentap=".$value['tentap'] ?> class="btn btn-danger">Delete</a>
                                             </td>
+                                            </form>
                                         </tr>
 
                                     <?php endforeach; endif; ?>
@@ -202,7 +210,7 @@ if (isset($_GET['txtAnime_name']) && isset($_GET['txtAuthor']) && isset($_GET['t
     $(document).ready(function () {
         $(".widget-title").click(function () {
             $(".vieweditanime").toggle();  // Thu gọn/mở rộng phần nội dung
-            var icon = $(this).find("i");
+            var icon = $(this).find(".iconanimeinfo");
             // Thay đổi icon khi thu gọn/mở rộng
             if (icon.hasClass("icon-chevron-down")) {
                 icon.removeClass("icon-chevron-down").addClass("icon-chevron-up");
@@ -212,6 +220,61 @@ if (isset($_GET['txtAnime_name']) && isset($_GET['txtAuthor']) && isset($_GET['t
         });
     });
 </script>
+<!-- double click to edit -->
+<script>
+    function editLink(cell) {
+        // Lưu lại nội dung cũ của thẻ <td> vào một biến
+        var currentText = cell.innerText;
+
+        // Tạo một ô input để thay thế thẻ <td>
+        var input = document.createElement("input");
+        input.type = "text";
+        input.value = currentText; // Đặt giá trị ban đầu của input là nội dung cũ
+
+        input.style.width = "100%";
+
+        // Thêm sự kiện khi người dùng nhập Enter hoặc mất focus (blur)
+        input.onblur = function() {
+            // Cập nhật lại nội dung của thẻ <td> khi mất focus
+            cell.innerText = input.value;
+
+            // Tùy chọn: Có thể gửi dữ liệu đến server tại đây nếu cần lưu thay đổi
+            alert("Updated content: " + input.value); // Hiển thị alert
+        }
+
+        input.onkeydown = function(event) {
+            // Kiểm tra xem người dùng có nhấn Enter không
+            if (event.key === "Enter") {
+                input.blur(); // Tự động mất focus khi nhấn Enter
+            }
+        }
+
+        // Lưu lại các phần tử con trong <td> nếu có (ví dụ, các thẻ <a> bên trong <td>)
+        var originalContent = cell.innerHTML;
+
+        // Xóa nội dung hiện tại trong <td>
+        //cell.innerHTML = '';                                ???
+
+        // Thêm ô input vào <td>
+        cell.appendChild(input);
+
+        // Focus vào ô input để người dùng có thể tiếp tục chỉnh sửa
+        input.focus();
+
+        // Tùy chọn: Cập nhật lại nội dung cũ sau khi chỉnh sửa
+        // (Nếu bạn muốn lấy lại các phần tử khác đã có trong <td>)
+        input.onblur = function() {
+            // Trả lại phần tử con cũ, ví dụ các thẻ <a> nếu cần
+            cell.innerHTML = originalContent;
+
+            // Sau đó, cập nhật lại nội dung của <td> từ ô input
+            cell.innerText = input.value;
+
+            //alert("Updated content: " + input.value); // Hiển thị alert
+        }
+    }
+</script>
+
 
 <!-- END CONTENT -->
 <?php include "footer.php" ?>

@@ -3,8 +3,12 @@ include "config.php";
 include "models/db.php";
 include "models/anime.php";
 include "../models/tag.php";
+include "models/cate.php";
+include "models/user.php";
 $anime = new Anime;
+$cate = new Cate;
 $tag = new Tag;
+$user = new Useradmin;
 $getAllAnime = $anime->getAllAnime();
 ?>
 
@@ -13,7 +17,7 @@ $getAllAnime = $anime->getAllAnime();
 <html lang="en">
 
 <head>
-    <title>Mobile Admin</title>
+    <title>Admin</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="./images/logo.png" type="image/icon type">
@@ -61,21 +65,9 @@ $getAllAnime = $anime->getAllAnime();
                             Out</a></li>
                 </ul>
             </li>
-            <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i>
-                    <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> new message</a></li>
-                    <li class="divider"></li>
-                    <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i> inbox</a></li>
-                    <li class="divider"></li>
-                    <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
-                    <li class="divider"></li>
-                    <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
-                </ul>
-            </li>
-            <li class=""><a title="" href="#"><i class="icon icon-cog"></i>
-                    <span class="text">Settings</span></a></li>
-            <li class=""><a title="" href="#"><i class="icon
+            <li class=""><a title="" href="https://drive.google.com/drive/folders/1F6rDk2deVAat4aGc4CH59mFkjDBhT6uQ?usp=sharing" target="_blank"><i class=""></i>
+                    <span class="text">GG Drive</span></a></li>
+            <li class=""><a title="" href="../index.php"><i class="icon
                             icon-share-alt"></i> <span class="text">Logout</span></a>
             </li>
         </ul>

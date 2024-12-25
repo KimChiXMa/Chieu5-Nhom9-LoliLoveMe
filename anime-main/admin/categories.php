@@ -5,7 +5,8 @@ include "sidebar.php";
 <!-- BEGIN CONTENT -->
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i> Home</a></div>
+        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom current"><i
+                    class="icon-home"></i> Home</a></div>
         <h1>Manage Categories</h1>
     </div>
     <div class="container-fluid">
@@ -13,7 +14,7 @@ include "sidebar.php";
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
-                    <div class="widget-title"> <span class="icon"><a href="form.html"> <i class="icon-plus"></i>
+                    <div class="widget-title"> <span class="icon"><a href="form-add-cate.php"> <i class="icon-plus"></i>
                             </a></span>
                         <h5>Categories</h5>
                     </div>
@@ -22,67 +23,24 @@ include "sidebar.php";
                                     table-striped">
                             <thead>
                                 <tr>
-                                    <th></th>
                                     <th>Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="">
-                                    <td width="100"><img src="./images/863px-Apple_logo_black.svg.png"></td>
-                                    <td>Apple</td>
+                                <?php foreach ($cate->getAllCate() as $value): ?>
+                                        <tr class="">
 
-                                    <td>
-                                        <a href="edit_manu.html" class="btn
-                                                    btn-success btn-mini">Edit</a>
-                                        <a href="#" class="btn
-                                                    btn-danger btn-mini">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td width="100"><img src="./images/microsoft.png"></td>
-                                    <td>Microsoft</td>
+                                            <td style="text-align: center; font-size: 16px;"><?php echo $value['name_tag'] ?></td>
 
-                                    <td>
-                                        <a href="edit_manu.html" class="btn
-                                                    btn-success btn-mini">Edit</a>
-                                        <a href="#" class="btn
-                                                    btn-danger btn-mini">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td width="100"><img src="./images/Sony-Logo.png"></td>
-                                    <td>Sony</td>
-
-                                    <td>
-                                        <a href="edit_manu.html" class="btn
-                                                    btn-success btn-mini">Edit</a>
-                                        <a href="#" class="btn
-                                                    btn-danger btn-mini">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td width="100"><img src="./images/1200px-Samsung_Logo.svg.png"></td>
-                                    <td>SamSung</td>
-
-                                    <td>
-                                        <a href="edit_manu.html" class="btn
-                                                    btn-success btn-mini">Edit</a>
-                                        <a href="#" class="btn
-                                                    btn-danger btn-mini">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td width="100"><img src="./images/1200px-OPPO_Logo_wiki.png"></td>
-                                    <td>Oppo</td>
-
-                                    <td>
-                                        <a href="edit_manu.html" class="btn
-                                                    btn-success btn-mini">Edit</a>
-                                        <a href="#" class="btn
-                                                    btn-danger btn-mini">Delete</a>
-                                    </td>
-                                </tr>
+                                            <td style="text-align: center;">
+                                                <a href=<?php echo "form-update-cate.php?idcate=".$value['id_tag']; ?> class="btn
+                                                    btn-success">Edit</a>
+                                                <a href=<?php echo "jump.php?select=7&idcate=".$value['id_tag'] ?> class="btn
+                                                    btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                         <div class="row" style="margin-left: 18px;">

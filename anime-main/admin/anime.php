@@ -29,6 +29,7 @@ include "sidebar.php";
                                     <th>Descrip</th>
                                     <th>Ep Num</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,6 +47,9 @@ include "sidebar.php";
                                         <td><?php echo $value['so_tap']; ?></td>
                                         <td>
                                             <a href=<?php echo "anime-ep.php?id-anime=".$value['id'] ?>><button button class="btn btn-success">Edit</button></a>
+                                        </td>
+                                        <td>
+                                            <a href=<?php echo "jump.php?select=5&id-anime=".$value['id'] ?>><button button class="btn btn-success" style="background-color:rgb(255, 0, 0);">Delete</button></a>
                                         </td>
                                     </tr>
 

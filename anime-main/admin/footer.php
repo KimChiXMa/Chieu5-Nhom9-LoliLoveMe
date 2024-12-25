@@ -1,6 +1,6 @@
 <!--Footer-part-->
 <div class="row-fluid">
-    <div id="footer" class="span12"> 2017 &copy; TDC - Lập trình web 1</div>
+    <div id="footer" class="span12"> 2024 &copy; LOLI LOVE ME!!!</div>
 </div>
 <!--end-Footer-part-->
  <script src="js/jquery.min.js"></script>
