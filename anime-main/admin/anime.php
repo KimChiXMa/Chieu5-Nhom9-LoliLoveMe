@@ -38,7 +38,7 @@ if(!isset($_POST['animesearch'])){
                                 <tr>
                                     <form action="" method="post">
                                         <input style="width: 90%;" type="text" name="animesearch" id="">
-                                        <button class="btn btn-success">huhu</button>
+                                        <button class="btn btn-success">Sech</button>
                                     </form>
                                 </tr>
                                 <tr>

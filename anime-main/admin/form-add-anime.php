@@ -42,7 +42,7 @@ include "sidebar.php";
                             <div class="control-group">
                                 <label class="control-label">Description</label>
                                 <div class="controls">
-                                <textarea style="height: 250px;" class="span11" name="content"></textarea>
+                                <textarea style="height: 250px;" class="span11" name="description"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
