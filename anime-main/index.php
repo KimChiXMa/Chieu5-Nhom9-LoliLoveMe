@@ -88,7 +88,7 @@ session_start();
                         </div>
                         <div class="row">
                             <?php
-                            $count = 8;
+                            $count = 12;
                             $page = 1;
                             $total = count($anime->getAllAnimes());
                             if (isset($_GET["page"])) {
