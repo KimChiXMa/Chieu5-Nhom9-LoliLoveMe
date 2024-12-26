@@ -19,13 +19,38 @@ class Comment extends Db
         $sql->execute();
     }
 
-    // public function addReview($idUser, $idAnime, $commentText)
-    // {
-    //     $sql = self::$connection->prepare("INSERT INTO `comment`(`id_user`, `comment`, `id_anime`) VALUES (?, ?, ?)");
-    //     $sql->bind_param("isi", $idUser, $commentText, $idAnime); // Chú ý thứ tự và kiểu dữ liệu
-    //     $sql->execute();
-    // }
+     public function addOldReview($idUser, $idAnime, $commentText)
+     {
+     $sql = self::$connection->prepare("INSERT INTO `comment`(`id_user`, `comment`, `id_anime`) VALUES (?, ?, ?)");
+         $sql->bind_param("isi", $idUser, $commentText, $idAnime); // Chú ý thứ tự và kiểu dữ liệu
+         $sql->execute();
+     }
 
+    public function getAnimeByNewCommentIndex()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM comment , anime WHERE anime.id = comment.id_anime  ORDER BY `comment`.`created_at` ASC;");
+        $sql->execute();
+        $comments = array();
+        $comments = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $comments;
+    }
+
+    public function getAnimeByNewCommentResult()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM comment , anime WHERE anime.id = comment.id_anime  ORDER BY `comment`.`created_at` DESC;");
+        $sql->execute();
+        $comments = array();
+        $comments = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $comments;
+    }
+    public function getAnimeByNewCommentFollow()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM comment , anime , follow WHERE anime.id = comment.id_anime  ORDER BY `comment`.`created_at` DESC;");
+        $sql->execute();
+        $comments = array();
+        $comments = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $comments;
+    }
 
     public function getAnimeByNewComment()
     {
