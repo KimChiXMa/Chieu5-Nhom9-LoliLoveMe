@@ -69,7 +69,7 @@ session_start();
                                 <span class="icon_profile"></span>
                             </div>
                             <div class="input__item">
-                                <input name="user_password_login" type="text" placeholder="Password">
+                                <input name="user_password_login" type="password" placeholder="Password">
                                 <span class="icon_lock"></span>
                             </div>
                             <div></div>

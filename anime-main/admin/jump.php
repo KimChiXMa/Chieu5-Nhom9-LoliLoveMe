@@ -81,9 +81,9 @@ switch ($_GET['select']) {
                 $loginstat = "Successfully";
                 $rolecheck = $user->getUserRole($UserLogin[0]['id'])[0]['role'];
                 if ($rolecheck == 0) {
-                $_SESSION["id_user_login"] = $UserLogin[0]['id'];
+                    $_SESSION["id_user_login"] = $UserLogin[0]['id'];
                     header('location:../index.php');
-                }else{
+                } else {
                     unset($_SESSION["id_user_login"]);
                     header('location:index.php');
                 }
@@ -94,6 +94,25 @@ switch ($_GET['select']) {
                 $loginstat = "Failed";
                 header('location:../login.php?statlogin=Failed');
             }
+        }
+        break;
+    case '14':
+        try {
+            if ((isset($_POST['User_SU_Email']) || isset($_POST['User_SU_Username'])) && isset($_POST['User_SU_Password'])) {
+                $username = $_POST['User_SU_Username'];
+                $password = $_POST['User_SU_Password'];
+                $email = $_POST['User_SU_Email'];
+                $UserRegister = $userweb->UserRegiser($username, $password, $email);
+                //var_dump($_POST['user_password_login']);
+                //var_dump($UserRegister);
+                if ($UserRegister == true) {
+                    header('location:../login.php');
+                } else {
+                    header('location:../signup.php?stat=failed');
+                }
+            }
+        }catch(Exception $ex){
+            header('location:../signup.php?stat=failed');
         }
         break;
     default:

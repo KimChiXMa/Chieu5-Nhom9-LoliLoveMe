@@ -1,5 +1,7 @@
 <?php
-session_start(); ?>
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -35,18 +37,6 @@ session_start(); ?>
 
     <?php
     include "header.php";
-    if ((isset($_POST['User_SU_Email']) || isset($_POST['User_SU_Username'])) && isset($_POST['User_SU_Password'])) {
-        $username = $_POST['User_SU_Username'];
-        $password = $_POST['User_SU_Password'];
-        $email = $_POST['User_SU_Email'];
-        $UserRegister = $user->UserRegiser($username, $password, $email);
-        //var_dump($_POST['user_password_login']);
-        //var_dump($UserRegister);
-        if ($UserRegister == true) {
-            header('location:login.php');
-        } else {
-        }
-    }
     ?>
 
     <!-- Normal Breadcrumb Begin -->
@@ -70,8 +60,13 @@ session_start(); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login__form">
+                        <?php
+                        if (isset($_GET['stat']) && $_GET['stat'] == "failed") {
+                            echo "<div style='color:Tomato;'>" . "Register failed!!!" . "</div>";
+                        }
+                        ?>
                         <h3>Sign Up</h3>
-                        <form action="" method="post">
+                        <form action="./admin/jump.php?select=14" method="post">
                             <div class="input__item">
                                 <input name="User_SU_Email" type="text" placeholder="Email">
                                 <span class="icon_mail"></span>
@@ -86,7 +81,7 @@ session_start(); ?>
                             </div>
                             <button type="submit" class="site-btn">Login Now</button>
                         </form>
-                        <h5>Already have an account? <a href="#">Log In!</a></h5>
+                        <h5>Already have an account? <a href="login.php">Log In!</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -129,10 +124,13 @@ session_start(); ?>
                 </div>
                 <div class="col-lg-3">
                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>
+                        Copyright &copy;
+                        <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </script> All rights reserved | This template is made with <i class="fa fa-heart"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
 
                 </div>
             </div>
