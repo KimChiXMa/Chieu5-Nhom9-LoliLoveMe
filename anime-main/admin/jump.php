@@ -80,7 +80,12 @@ switch ($_GET['select']) {
             if (count($UserLogin) > 0) {
                 $_SESSION["id_user_login"] = $UserLogin[0]['id'];
                 $loginstat = "Successfully";
-                header('location:../index.php');
+                $rolecheck = $user->getUserRole($UserLogin[0]['id'])[0]['role'];
+                if ($rolecheck == 0) {
+                    header('location:../index.php');
+                }else{
+                    header('location:index.php');
+                }
             } else {
                 // header('location:login.php');
                 unset($_SESSION['username']);
