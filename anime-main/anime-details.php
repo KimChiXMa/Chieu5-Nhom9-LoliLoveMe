@@ -71,7 +71,7 @@ session_start();
                     $tag = "đang cập nhật";
                     $count = 0;
                     $idAnime = $_GET["id"];
-                    var_dump($idUserCurrent);
+                    //var_dump($idUserCurrent);
                     //tạo chuỗi tag chứa các tag của anime
                     foreach ($getTag as $key => $value) {
                         if ($count == 0) {
@@ -110,9 +110,8 @@ session_start();
                                         </div>
                                     </div>
                                     <div class="anime__details__btn">
-                                        <?php var_dump(
-                                            $follow->getFollow($idUserCurrent, $idAnime)
-                                        );
+                                        <?php 
+                                        //var_dump($follow->getFollow($idUserCurrent, $idAnime));
                                         if ($idUserCurrent == 0 || $follow->getFollow($idUserCurrent, $idAnime) == false): ?>
                                             <a href="follow_anime.php?id=<?php echo $idAnime; ?>&type=follow" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
                                         <?php else: ?>

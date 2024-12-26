@@ -45,7 +45,11 @@ function proceedAvarta($url)
 
 if (isset($_SESSION["id_user_login"])) {
     $idUserCurrent = $_SESSION["id_user_login"];
+}else{
+    $idUserCurrent = 0;
 }
+
+
 ?>
 <!-- Header Section Begin -->
 <header class="header">
@@ -84,7 +88,7 @@ if (isset($_SESSION["id_user_login"])) {
                     <ul>
                         <li><a href="#" class="search-switch"><span class="icon_search"></span></a></li>
 
-                        <li><a href="./categories.php"> <span class="icon_profile"></span></a>
+                        <li><a href="#"> <span class="icon_profile"></span></a>
                             <ul class="dropdown">
                                 <?php if ( isset($_SESSION["id_user_login"]) && $_SESSION["id_user_login"] != 0): ?>
                                     <li><a href="follow-list.php">Theo dõi</a></li>

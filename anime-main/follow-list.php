@@ -40,7 +40,6 @@ session_start(); ?>
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $count = 3;
     $sort = "recent add";
-    $result = $_GET["search"];
     $getAnimeByTag = $anime->getFollowAnimeByTagRecentAdd($idUserCurrent, $page, $count);
     if (isset($_GET['sort'])) {
         $sort = $_GET['sort'];
@@ -135,7 +134,7 @@ session_start(); ?>
                         $count = 3;
                         // Lấy số trang trên thanh địa chỉ
                         // Tính tổng số anime theo thể loại, ví dụ kết quả là 18
-                        $total = count($anime->getAnimeBySearch($result));
+                        $total = count($anime->getAnimeByFollow($idUserCurrent));
                         // lấy đường dẫn đến file hiện hành
                         $url = $_SERVER['PHP_SELF'] . "?sort=" . $sort;
                         echo $anime->paginateCate($url, $total, $count); ?>

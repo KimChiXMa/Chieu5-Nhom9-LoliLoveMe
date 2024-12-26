@@ -3,7 +3,7 @@ class Anime extends Db
 {
     public function getAllAnimes()
     {
-        $sql = self::$connection->prepare("SELECT * FROM `anime`");
+        $sql = self::$connection->prepare("SELECT * FROM `anime` ORDER BY anime.id DESC");
         $sql->execute();
         $item = array();
         $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -225,6 +225,16 @@ class Anime extends Db
         }
         return $link;
     }
+
+function getAnimeByFollow($idUser){
+        
+        $sql = self::$connection->prepare("SELECT *,anime.* FROM `follow`,anime WHERE follow.user_id = ? AND follow.anime_id = anime.id;");
+        $sql->bind_param("i", $idUser);
+        $sql->execute();
+        $animes = array();
+        $animes = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $animes;
+}
 
     public function getFollowAnimeByTagRecentAdd($idUser, $page, $count)
     {
