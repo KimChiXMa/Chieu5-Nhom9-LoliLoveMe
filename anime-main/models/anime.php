@@ -9,6 +9,16 @@ class Anime extends Db
         $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $item;
     }
+    public function getAllAnimesPaginate($page, $count)
+    {
+        $start = ($page - 1) * $count;
+        $sql = self::$connection->prepare("SELECT * FROM `anime` ORDER BY anime.id DESC  LIMIT ?,?");
+        $sql->bind_param("ii", $start, $count);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
+    }
     // public function getAnimeByID($idanime)
     // {
     //     $sql = self::$connection->prepare("SELECT * FROM `anime` WHERE `id` = ?");
@@ -60,6 +70,17 @@ class Anime extends Db
         $link = "";
         for ($j = 1; $j <= $totalLinks; $j++) {
             $link = $link . "<a href='$url&page=$j'> $j</a>";
+        }
+        return $link;
+    }
+
+    //Hàm in paginate theo cate Hy
+    function paginateIndex($url, $total, $count)
+    {
+        $totalLinks = ceil($total / $count);
+        $link = "";
+        for ($j = 1; $j <= $totalLinks; $j++) {
+            $link = $link . "<a href='$url?page=$j'> $j</a>";
         }
         return $link;
     }

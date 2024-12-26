@@ -26,6 +26,14 @@ function proceedUrl($url)
     $newUrl = "https://drive.google.com/thumbnail?id=" . $idImg . "&sz=w10000";
     return $newUrl;
 }
+
+                                //xử lý địa chỉ hình ảnh để nhúng vào web
+                                function proceedComment($url)
+                                {
+                                    $idImg = substr($url, 32, 33);
+                                    $newUrl = "https://drive.google.com/thumbnail?id=" . $idImg . "&sz=w100";
+                                    return $newUrl;
+                                }
 //xử lý địa chỉ video để nhúng vào web
 function proceedVideo($url)
 {
@@ -33,7 +41,6 @@ function proceedVideo($url)
     $newUrl = $idvid . "preview";
     return $newUrl;
 }
-
 function proceedAvarta($url)
 {
     if ($url == null) {
@@ -43,11 +50,14 @@ function proceedAvarta($url)
     }
 }
 
+
 if (isset($_SESSION["id_user_login"])) {
     $idUserCurrent = $_SESSION["id_user_login"];
 }else{
     $idUserCurrent = 0;
 }
+
+
 
 
 ?>

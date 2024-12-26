@@ -12,7 +12,7 @@ class Comment extends Db
         return $comments;
     }
 
-    public function addReview($idUser,$idAnime,$review)
+    public function addReview($idUser, $idAnime, $review)
     {
         $sql = self::$connection->prepare("INSERT INTO `comment`(`id_user`, `comment`, `id_anime`) VALUES (?,?,?)");
         $sql->bind_param("isi", $idUser, $review, $idAnime);
@@ -26,4 +26,13 @@ class Comment extends Db
     //     $sql->execute();
     // }
 
+
+    public function getAnimeByNewComment()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM comment , anime WHERE anime.id = comment.id_anime  ORDER BY `comment`.`created_at` DESC;");
+        $sql->execute();
+        $comments = array();
+        $comments = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $comments;
+    }
 }

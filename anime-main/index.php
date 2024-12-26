@@ -34,7 +34,7 @@ session_start();
         <div class="loader"></div>
     </div>
 
-    <?php 
+    <?php
     include "header.php";
     ?>
     <!-- Hero Section Begin -->
@@ -44,8 +44,8 @@ session_start();
                 <?php $getidAnime = $anime->getAnimeById(3);
                 foreach ($getidAnime as $key => $value):
                     $getTag = $animetag->getTag($value['id']);
-                    ?>                                 
-                    <div onclick="goToAnimeDetail('<?php echo $value['id']?>')" class="hero__items set-bg"
+                ?>
+                    <div onclick="goToAnimeDetail('<?php echo $value['id'] ?>')" class="hero__items set-bg"
                         data-setbg="<?php echo proceedUrl($value['thumbnail']); ?>">
                         <div id="move_detail" class="row">
                             <div class="col-lg-6">
@@ -55,12 +55,12 @@ session_start();
                                     <p>
                                     <p><?php echo substr($value['descrip'], 0, 50); ?></p>
                                     </p>
-                                    <a href="anime-watching.php?id=<?php echo $value["id"];?>"><span>Watch Now</span> <i
+                                    <a href="anime-watching.php?id=<?php echo $value["id"]; ?>"><span>Watch Now</span> <i
                                             class="fa fa-angle-right"></i></a>
                                 </div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -87,69 +87,62 @@ session_start();
                             </div>
                         </div>
                         <div class="row">
-                        <?php
-// Giới hạn số lượng bản ghi trên mỗi trang
-$limit = 5;
+                            <?php
+                            $count = 8;
+                            $page = 1;
+                            $total = count($anime->getAllAnimes());
+                            if (isset($_GET["page"])) {
+                                $page = $_GET["page"];
+                            }
 
-// Lấy số trang từ tham số 'page' trên URL, nếu không có sẽ mặc định là trang 1
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
+                            $getAllAnime = $anime->getAllAnimesPaginate($page,$count);  // Gọi phương thức với tham số limit và start
 
-// Tính tổng số bản ghi
-$total = count($anime->getAllAnimes());  // Tổng số anime
-$total_pages = ceil($total / $limit);  // Tổng số trang
+                            // Kiểm tra nếu có dữ liệu
+                            foreach ($getAllAnime as $key => $value):
+                                $getTag = $animetag->getTag($value['id']);
+                            ?>
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg" data-setbg="<?php echo proceedUrl($value['thumbnail']); ?>">
+                                            <div class="ep"><?php echo $value['so_tap']; ?> tập</div>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <ul>
+                                                <?php foreach ($getTag as $keyTag => $valueTag): ?>
+                                                    <li><?php echo $valueTag['name_tag']; ?></li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                            <h5><a href="anime-details.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                            endforeach;
 
-// Tính số bản ghi bắt đầu lấy cho trang hiện tại
-$start_from = ($page - 1) * $limit;
 
-// Lấy danh sách anime cho trang hiện tại
-$getAllAnime = $anime->getAllAnimes($start_from, $limit);  // Gọi phương thức với tham số limit và start
-
-// Kiểm tra nếu có dữ liệu
-if ($getAllAnime && count($getAllAnime) > 0):
-    foreach ($getAllAnime as $key => $value):
-        $getTag = $animetag->getTag($value['id']);
-?>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-                <div class="product__item__pic set-bg" data-setbg="<?php echo proceedUrl($value['thumbnail']); ?>">
-                    <div class="ep"><?php echo $value['so_tap']; ?> tập</div>
-                </div>
-                <div class="product__item__text">
-                    <ul>
-                        <?php foreach ($getTag as $keyTag => $valueTag): ?>
-                            <li><?php echo $valueTag['name_tag']; ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                    <h5><a href="anime-details.php?id=<?php echo $value['id']; ?>"><?php echo $value['name']; ?></a></h5>
-                </div>
-            </div>
-        </div>
-<?php
-    endforeach;
-else:
-    echo "Không có dữ liệu anime nào để hiển thị.";
-endif;
-
-// Hiển thị phân trang
-function paginate($url, $total, $count)
-{
-    $totalLinks = ceil($total / $count);
-    $link = "";
-    for ($j = 1; $j <= $totalLinks; $j++) {
-        $link .= "<a class='btn btn-sm btn-outline-secondary m-1' href='$url?page=$j'> $j </a>";
-    }
-    return $link;
-}
-
-echo paginate('index.php', $total, $limit);
-?>
+                            ?>
                         </div>
                     </div>
 
+
+
+                    <div class="product__pagination">
+                        <?php
+
+
+                        // lấy đường dẫn đến file hiện hành
+                        $url = $_SERVER['PHP_SELF'];
+                        echo $anime->paginateIndex($url, $total, $count); ?>
+
+                        <!-- <a href="#"><i class="fa fa-angle-double-right"></i></a> -->
+                        <?php //endif; 
+                        ?>
+                    </div>
                 </div>
 
             </div>
         </div>
+
     </section>
     <!-- Product Section End -->
 
