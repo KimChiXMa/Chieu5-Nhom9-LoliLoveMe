@@ -71,7 +71,7 @@ session_start();
     <section class="product spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
 
                     <div class="recent__product">
                         <div class="row">
@@ -81,9 +81,7 @@ session_start();
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
-                                <div class="btn__all">
-                                    <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="row">
@@ -95,13 +93,13 @@ session_start();
                                 $page = $_GET["page"];
                             }
 
-                            $getAllAnime = $anime->getAllAnimesPaginate($page,$count);  // Gọi phương thức với tham số limit và start
+                            $getAllAnime = $anime->getAllAnimesPaginate($page, $count);  // Gọi phương thức với tham số limit và start
 
                             // Kiểm tra nếu có dữ liệu
                             foreach ($getAllAnime as $key => $value):
                                 $getTag = $animetag->getTag($value['id']);
                             ?>
-                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg" data-setbg="<?php echo proceedUrl($value['thumbnail']); ?>">
                                             <div class="ep"><?php echo $value['so_tap']; ?> tập</div>
@@ -118,8 +116,6 @@ session_start();
                                 </div>
                             <?php
                             endforeach;
-
-
                             ?>
                         </div>
                     </div>
@@ -139,7 +135,40 @@ session_start();
                         ?>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="product__sidebar">
 
+
+                        <div class="product__sidebar__comment">
+                            <div class="section-title">
+                                <h5>New Comment</h5>
+                            </div>
+
+                            <?php
+                            $listAnimeNewComment = $comment->getAnimeByNewComment();
+                            foreach ($listAnimeNewComment as $keyAnime => $valueAnime):
+
+                            ?>
+                                <div class="product__sidebar__comment__item">
+                                    <div class="product__sidebar__comment__item__pic">
+                                        <img src="<?php echo proceedComment($valueAnime['thumbnail']); ?>" alt="">
+                                    </div>
+                                    <div class="product__sidebar__comment__item__text">
+                                        <ul>
+                                            <?php foreach ($animetag->getTag($valueAnime['id']) as $keyAnimeTag => $valueAnimeTag): ?>
+                                                <li><?php echo $valueAnimeTag['name_tag']; ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                        <h5><a href="anime-details.php?id=<?php echo $valueAnime['id']; ?>"><?php echo $valueAnime['name']; ?></a></h5>
+                                        <span>Review : <?php echo $valueAnime['comment']; ?></span>
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

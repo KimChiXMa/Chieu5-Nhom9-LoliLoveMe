@@ -27,13 +27,13 @@ function proceedUrl($url)
     return $newUrl;
 }
 
-                                //xử lý địa chỉ hình ảnh để nhúng vào web
-                                function proceedComment($url)
-                                {
-                                    $idImg = substr($url, 32, 33);
-                                    $newUrl = "https://drive.google.com/thumbnail?id=" . $idImg . "&sz=w100";
-                                    return $newUrl;
-                                }
+//xử lý địa chỉ hình ảnh để nhúng vào web
+function proceedComment($url)
+{
+    $idImg = substr($url, 32, 33);
+    $newUrl = "https://drive.google.com/thumbnail?id=" . $idImg . "&sz=w100";
+    return $newUrl;
+}
 //xử lý địa chỉ video để nhúng vào web
 function proceedVideo($url)
 {
@@ -53,7 +53,7 @@ function proceedAvarta($url)
 
 if (isset($_SESSION["id_user_login"])) {
     $idUserCurrent = $_SESSION["id_user_login"];
-}else{
+} else {
     $idUserCurrent = 0;
 }
 
@@ -72,7 +72,7 @@ if (isset($_SESSION["id_user_login"])) {
                     </a>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-6">
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
@@ -93,21 +93,31 @@ if (isset($_SESSION["id_user_login"])) {
                     </nav>
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 <nav class="header__menu mobile-menu">
                     <ul>
                         <li><a href="#" class="search-switch"><span class="icon_search"></span></a></li>
 
-                        <li><a href="#"> <span class="icon_profile"></span></a>
-                            <ul class="dropdown">
-                                <?php if ( isset($_SESSION["id_user_login"]) && $_SESSION["id_user_login"] != 0): ?>
-                                    <li><a href="follow-list.php">Theo dõi</a></li>
-                                    <li><a href="logout.php">Đăng xuất</a></li>
-                                <?php else: ?>
-                                    <li><a href="login.php">Đăng nhặp</a></li>
+                        <?php if (isset($_SESSION["id_user_login"]) && $_SESSION["id_user_login"] != 0):
+                            $username = $user->getUserNameById($_SESSION["id_user_login"]);
+                            foreach ($username as $key => $value):
+                        ?>
+                                <li><a href="#"> <span class="icon_profile"></span><?php echo $value["displayname"];  ?></a>
+                                <?php
+                            endforeach;
+                        else:
+                                ?>
+                                <li><a href="login.php"> <span class="icon_profile"></span></a>
                                 <?php endif; ?>
-                            </ul>
-                        </li>
+                                <ul class="dropdown">
+                                    <?php if (isset($_SESSION["id_user_login"]) && $_SESSION["id_user_login"] != 0): ?>
+                                        <li><a href="follow-list.php">Theo dõi</a></li>
+                                        <li><a href="logout.php">Đăng xuất</a></li>
+                                    <?php else: ?>
+                                        <li><a href="login.php">Đăng nhặp</a></li>
+                                    <?php endif; ?>
+                                </ul>
+                                </li>
                     </ul>
                 </nav>
 

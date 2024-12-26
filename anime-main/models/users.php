@@ -28,4 +28,14 @@ class User extends Db
         }
         return false;
     }
+
+
+    public function getUserNameById($idUser){
+        $sql = self::$connection->prepare("SELECT * FROM `user` WHERE `id` = ?;");
+        $sql->bind_param("i", $idUser);
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
 }
