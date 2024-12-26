@@ -1,12 +1,15 @@
 <?php
+session_start();
 include "config.php";
 include "models/db.php";
 include "models/anime.php";
 include "models/cate.php";
 include "models/user.php";
+include "../models/users.php";
 $anime = new Anime;
 $cate = new Cate;
 $user = new Useradmin;
+$userweb = new User;
 
 switch ($_GET['select']) {
     case '1':
@@ -66,8 +69,26 @@ switch ($_GET['select']) {
         header("location:users.php");
         break;
     case '12':
-        $anime->addAnime($_POST['name'],$_POST['author'],$_POST['studio'],$_POST['description'],$_POST['thumbnail'],$_POST['sotap']?$_POST['sotap']:0);
+        $anime->addAnime($_POST['name'], $_POST['author'], $_POST['studio'], $_POST['description'], $_POST['thumbnail'], $_POST['sotap'] ? $_POST['sotap'] : 0);
         header("location:anime.php");
+        break;
+    case '13':
+        $loginstat = "";
+        if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'])) {
+            $UserLogin = $userweb->UserLogin($_POST['user_name_email_login'], $_POST['user_password_login']);
+            //var_dump($_POST['user_password_login']);
+            if (count($UserLogin) > 0) {
+                $_SESSION["id_user_login"] = $UserLogin[0]['id'];
+                $loginstat = "Successfully";
+                header('location:../index.php');
+            } else {
+                // header('location:login.php');
+                unset($_SESSION['username']);
+                unset($_SESSION['password']);
+                $loginstat = "Failed";
+                header('location:../login.php?statlogin=Failed');
+            }
+        }
         break;
     default:
     // Code to execute if $variable doesn't match any of the cases

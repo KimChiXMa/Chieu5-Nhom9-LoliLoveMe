@@ -10,6 +10,15 @@ class Useradmin extends Db
         $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $item;
     }
+    public function getUserRole($userlogin)
+    {
+        $sql = self::$connection->prepare("SELECT `role` FROM `user` WHERE `id` = ?");
+        $sql->bind_param("i",$userlogin);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
+    }
     public function getUserByID($iduser)
     {
         $sql = self::$connection->prepare("SELECT * FROM `user` WHERE `id` = ?");

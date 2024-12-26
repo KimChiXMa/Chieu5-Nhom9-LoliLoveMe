@@ -39,21 +39,6 @@ session_start();
     </div>
 
     <?php include "header.php";
-    $loginstat = "";
-    if (isset($_POST['user_name_email_login']) && isset($_POST['user_password_login'])) {
-        $UserLogin = $user->UserLogin($_POST['user_name_email_login'], $_POST['user_password_login']);
-        //var_dump($_POST['user_password_login']);
-        if (count($UserLogin) > 0) {
-            $_SESSION["id_user_login"] = $UserLogin[0]['id'];
-            $loginstat = "Successfully";
-            header('location:index.php');
-        } else {
-            // header('location:login.php');
-            unset($_SESSION['username']);
-            unset($_SESSION['password']);
-            $loginstat = "Failed";
-        }
-    }
     ?>
 
     <!-- Normal Breadcrumb Begin -->
@@ -78,7 +63,7 @@ session_start();
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Login</h3>
-                        <form action="" method="post">
+                        <form action="./admin/jump.php?select=13" method="post">
                             <div class="input__item">
                                 <input name="user_name_email_login" type="text" placeholder="Username or Email">
                                 <span class="icon_profile"></span>
@@ -89,10 +74,8 @@ session_start();
                             </div>
                             <div></div>
                             <?php
-                            if ($loginstat == "Failed") {
+                            if (isset($_GET['statlogin']) && $_GET['statlogin'] == "Failed") {
                                 echo "<div style='color:Tomato;'>" . "Username or password incorrect" . "</div>";
-                            }else{
-                                header("Location:index.php");
                             }
                             ?>
                             <button type="submit" class="site-btn">Login Now</button>
