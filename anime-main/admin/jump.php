@@ -78,12 +78,13 @@ switch ($_GET['select']) {
             $UserLogin = $userweb->UserLogin($_POST['user_name_email_login'], $_POST['user_password_login']);
             //var_dump($_POST['user_password_login']);
             if (count($UserLogin) > 0) {
-                $_SESSION["id_user_login"] = $UserLogin[0]['id'];
                 $loginstat = "Successfully";
                 $rolecheck = $user->getUserRole($UserLogin[0]['id'])[0]['role'];
                 if ($rolecheck == 0) {
+                $_SESSION["id_user_login"] = $UserLogin[0]['id'];
                     header('location:../index.php');
                 }else{
+                    unset($_SESSION["id_user_login"]);
                     header('location:index.php');
                 }
             } else {
