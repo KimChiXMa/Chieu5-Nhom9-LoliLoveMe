@@ -175,7 +175,7 @@ session_start();?>
                                                 <img src="<?php echo proceedAvarta($value["image"]); ?>" alt="">
                                             </div>
                                             <div class="anime__review__item__text">
-                                                <h6><?php echo $value["username"]; ?> - <span><?php echo $value["created_at"]; ?></span></h6>
+                                                <h6><?php echo $value["displayname"]; ?> - <span><?php echo $value["created_at"]; ?></span></h6>
                                                 <p><?php echo $value["comment"]; ?></p>
                                             </div>
                                         </div>
