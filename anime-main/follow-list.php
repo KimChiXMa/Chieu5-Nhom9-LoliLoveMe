@@ -38,7 +38,7 @@ session_start(); ?>
 
     $idTag = isset($_GET['idtag']) ? $_GET['idtag'] : 1;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $count = 3;
+    $count = 9;
     $sort = "recent add";
     $getAnimeByTag = $anime->getFollowAnimeByTagRecentAdd($idUserCurrent, $page, $count);
     if (isset($_GET['sort'])) {
@@ -131,7 +131,7 @@ session_start(); ?>
                         // hiển thị 2 sản phẩm trên 1 trang
                         //$sort = $_GET['sort'];
 
-                        $count = 3;
+                        $count = 9;
                         // Lấy số trang trên thanh địa chỉ
                         // Tính tổng số anime theo thể loại, ví dụ kết quả là 18
                         $total = count($anime->getAnimeByFollow($idUserCurrent));
