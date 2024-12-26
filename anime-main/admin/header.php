@@ -10,6 +10,8 @@ $cate = new Cate;
 $tag = new Tag;
 $user = new Useradmin;
 $getAllAnime = $anime->getAllAnime();
+$getallCate = $cate->getAllCate();
+$getAllUser = $user->getAllUser();
 ?>
 
 
