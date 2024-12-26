@@ -38,8 +38,8 @@ switch ($_GET['select']) {
         header("location:anime-ep.php?id-anime=" . $_GET['id-anime']);
         break;
     case '5':
-        $anime->addEpAnime($_GET['id-anime'], $_POST['Ep'], $_POST['link']);
-        header("location:anime-ep.php?id-anime=" . $_GET['id-anime']);
+        $anime->deleteAnime($_GET['id-anime']);
+        header("location:anime-ep.php");
         break;
     case '6':
         $cate->addCate($_POST['namecate']);
@@ -54,11 +54,20 @@ switch ($_GET['select']) {
         header("location:categories.php");
         break;
     case '9':
-        $user->addUser($_POST['username'],$_POST['pass'],$_POST['displayname'],$_POST['email'],$_POST['avt'],$_POST['role']);
+        $user->addUser($_POST['username'], $_POST['pass'], $_POST['displayname'], $_POST['email'], $_POST['avt'], $_POST['role']);
         header("location:users.php");
         break;
     case '10':
-
+        $user->updateUser($_POST['username'], $_POST['pass'], $_POST['displayname'], $_POST['Email'], $_POST['avt'], $_POST['role'], $_GET['userid']);
+        header("location:users.php");
+        break;
+    case '11':
+        $user->deleteUser($_GET['iduser']);
+        header("location:users.php");
+        break;
+    case '12':
+        $anime->addAnime($_POST['name'],$_POST['author'],$_POST['studio'],$_POST['description'],$_POST['thumbnail'],$_POST['sotap']?$_POST['sotap']:0);
+        header("location:anime.php");
         break;
     default:
     // Code to execute if $variable doesn't match any of the cases

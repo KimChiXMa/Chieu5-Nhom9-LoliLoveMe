@@ -19,45 +19,42 @@ include "sidebar.php";
                     </div>
                     <div class="widget-content nopadding">
                         <!-- BEGIN FORM -->
-                        <form action=<?php echo "jump.php?select=9" ?> method="post" class="form-horizontal"
+                        <form action=<?php echo "jump.php?select=12" ?> method="post" class="form-horizontal"
                             enctype="multipart/form-data">
                             <div class="control-group">
-                                <label class="control-label">Username</label>
+                                <label class="control-label">Name</label>
                                 <div class="controls">
-                                    <input type="text" required class="span11" name="username">
+                                    <input type="text" required class="span11" name="name">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Password</label>
+                                <label class="control-label">Author</label>
                                 <div class="controls">
-                                    <input type="text" required class="span11" name="pass">
+                                    <input type="text" required class="span11" name="author">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">DisplayName</label>
+                                <label class="control-label">Studio</label>
                                 <div class="controls">
-                                    <input type="text" required class="span11" name="displayname">
+                                    <input type="text" required class="span11" name="studio">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Email</label>
+                                <label class="control-label">Description</label>
                                 <div class="controls">
-                                    <input type="text" required class="span11" name="email">
+                                <textarea style="height: 250px;" class="span11" name="content"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">AVT</label>
+                                <label class="control-label">Thumbnail</label>
                                 <div class="controls">
-                                    <input type="text" class="span11" name="avt">
+                                    <input type="text" class="span11" name="thumbnail">
                                 </div>
                             </div>
                             <div class="control-group" style="opacity: 100 !important;">
-                                <label class="control-label">Role</label>
+                                <label class="control-label">Ep</label>
                                 <div class="controls">
-                                    <select name="role" id="role">
-                                        <option selected value="0">User</option>
-                                        <option value="1">Admin</option>
-                                    </select>
+                                    <input class="span11" type="number" name="sotap" id="">
                                 </div>
                             </div>
                             <div class="form-actions" style="text-align: right;">

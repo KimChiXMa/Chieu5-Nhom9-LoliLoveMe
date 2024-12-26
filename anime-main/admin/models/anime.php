@@ -9,6 +9,46 @@ class Anime extends Db
         $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $item;
     }
+    public function animeSearchName($keyword,$page,$count)
+    {
+        $keyword = "%$keyword%";
+        $start = ($page - 1)* $count;
+        $sql = self::$connection->prepare("SELECT * FROM `anime` WHERE `name` LIKE ? LIMIT ?,?");
+        $sql->bind_param("sii",$keyword,$start,$count);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
+    }
+    public function getAnimeLimit($page,$count)
+    {
+        $start = ($page - 1)*$count;
+        $sql = self::$connection->prepare("SELECT * FROM `anime` LIMIT ?,?");
+        $sql->bind_param("ii",$start,$count);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
+    }
+    public function sechcount($keyword)
+    {
+        $keyword = "%$keyword%";
+        $sql = self::$connection->prepare("SELECT * FROM `anime` WHERE `name` LIKE ?");
+        $sql->bind_param("s",$keyword);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return count($item);
+    }
+    function paginateItem($url, $total, $count)
+    {
+        $totalLinks = ceil($total / $count);
+        $link = "";
+        for ($j = 1; $j <= $totalLinks; $j++) {
+            $link = $link . "<li><a href='$url?page=$j'> $j</a></li>";
+        }
+        return $link;
+    }
     public function updateAnime($name,$author,$studio,$descrip,$thumbnail,$so_tap,$idanime)
     {
         $sql = self::$connection->prepare("UPDATE `anime` SET `name`=?,`author`=?,`studio`=?,`descrip`=?,`thumbnail`=?,`so_tap`=? WHERE `anime`.`id` = ?");
@@ -28,10 +68,29 @@ class Anime extends Db
         }
         return false;
     }
+    public function deleteAnime($idanime)
+    {
+        $sql = self::$connection->prepare("DELETE `anime`,`episode`,`anime_tag`,`comment` FROM `anime`,`episode`,`anime_tag`,`comment` WHERE `anime`.`id` = `episode`.`id_anime` AND `anime_tag`.`id_anime` = `anime`.`id` AND `anime`.`id` = `comment`.`id_anime` AND `anime`.`id` = ?");
+        $sql->bind_param("i",$idanime);
+        if($sql->execute()){
+            return true;
+        }
+        return false;
+    }
     public function addEpAnime($idanime,$tentap,$link)
     {
         $sql = self::$connection->prepare("INSERT INTO `episode`(`id_anime`, `tentap`, `id`) VALUES (?,?,?)");
         $sql->bind_param("iis",$idanime,$tentap,$link);
+        
+        if($sql->execute()){
+            return true;
+        }
+        return false;
+    }
+    public function addAnime($name,$author,$studio,$descr,$thumbnail,$so_tap=0)
+    {
+        $sql = self::$connection->prepare("INSERT INTO `anime`(`id`, `name`, `author`, `studio`, `descrip`, `thumbnail`, `so_tap`) VALUES ('',?,?,?,?,?,?)");
+        $sql->bind_param("sssssi",$name,$author,$studio,$descr,$thumbnail,$so_tap);
         
         if($sql->execute()){
             return true;

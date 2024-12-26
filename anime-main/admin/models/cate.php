@@ -41,6 +41,16 @@ class Cate extends Db
         }
         return false;
     }
+    public function getCateLimit($page,$count)
+    {
+        $start = ($page - 1)*$count;
+        $sql = self::$connection->prepare("SELECT * FROM `tag` LIMIT ?,?");
+        $sql->bind_param("ii",$start,$count);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
+    }
     public function getAllCate()
     {
         $sql = self::$connection->prepare("SELECT * FROM `tag`");

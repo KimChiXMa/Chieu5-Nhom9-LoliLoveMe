@@ -1,6 +1,11 @@
 <?php
 include "header.php";
 include "sidebar.php";
+if(!isset($_GET['page'])){
+    $page = 1;
+}else{
+    $page = $_GET['page'];
+}
 ?>
 <!-- BEGIN CONTENT -->
 <div id="content">
@@ -28,26 +33,31 @@ include "sidebar.php";
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($cate->getAllCate() as $value): ?>
-                                        <tr class="">
+                                <?php
+                                $getCateLimit = $cate->getCateLimit($page,10);
+                                foreach ($getCateLimit as $value):
+                                    ?>
+                                    <tr class="">
 
-                                            <td style="text-align: center; font-size: 16px;"><?php echo $value['name_tag'] ?></td>
+                                        <td style="text-align: center; font-size: 16px;"><?php echo $value['name_tag'] ?>
+                                        </td>
 
-                                            <td style="text-align: center;">
-                                                <a href=<?php echo "form-update-cate.php?idcate=".$value['id_tag']; ?> class="btn
-                                                    btn-success">Edit</a>
-                                                <a href=<?php echo "jump.php?select=7&idcate=".$value['id_tag'] ?> class="btn
-                                                    btn-danger">Delete</a>
-                                            </td>
-                                        </tr>
+                                        <td style="text-align: center;">
+                                            <a href=<?php echo "form-update-cate.php?idcate=" . $value['id_tag']; ?> class="btn
+                                                            btn-success">Edit</a>
+                                            <a href=<?php echo "jump.php?select=7&idcate=" . $value['id_tag'] ?> class="btn
+                                                            btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
                                 <?php endforeach ?>
                             </tbody>
                         </table>
                         <div class="row" style="margin-left: 18px;">
                             <ul class="pagination">
-                                <li class="active">1</li>
-                                <li>2</li>
-                                <li>3</li>
+                                <?php
+                                $total = count($getallCate);
+                                $url = $_SERVER['PHP_SELF'];
+                                echo $anime->paginateItem($url, $total, 10); ?>
                             </ul>
                         </div>
                     </div>
